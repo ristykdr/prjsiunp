@@ -14,17 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
-from django.http import HttpResponse
-
-def index(request):
-    return HttpResponse("INI INDEX")
-
-def tes(request):
-    return HttpResponse("ini tes")
+from django.urls import path, re_path, include
+from .import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^tes/$',tes),
-    path('',index)
+    re_path(r'^rps/',include('rps.urls')), #menghubungkan url rps dengan url project simprosis
+    re_path(r'^tes/$',views.tes),
+    path('',views.index)
 ]
