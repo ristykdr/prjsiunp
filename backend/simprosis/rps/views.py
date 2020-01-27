@@ -4,7 +4,15 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request): #index dari rps
-    return render(request,'rps.html')
+    context = {
+        'judul':'Home RPS',
+        'subjudul':'subjudul home rps',
+    }
+    return render(request,'rps/index.html',context)
 
 def submenurps(request):
-    return HttpResponse("ini adalah submenu rps")
+    context={
+        'judul':'submenu RPS',
+        'subjudul':'subjudul submenu rps',
+    }
+    return render(request,'rps/index.html',context)
