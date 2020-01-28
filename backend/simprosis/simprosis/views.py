@@ -5,6 +5,10 @@ def index (request):
     context ={
         'judul':'Home',
         'subjudul':'isi subjudul',
+        'nav':[
+            ['/','Home'],
+            ['rps/','RPS'],
+        ]
     }
     return render(request,'index.html',context)
 

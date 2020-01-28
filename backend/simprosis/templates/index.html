@@ -14,10 +14,28 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, doloribus voluptates repudiandae asperiores earum placeat fugiat commodi delectus, repellat obcaecati quia maiores esse aspernatur odio facilis nulla nemo cupiditate sed?</p>
     <h2>nanti ditampilkan halaman login</h2>
     <h2>login require</h2>
-    <ul>
+    <!-- <ul>
         <li><a href="">Home</a></li>
         <li><a href="rps/">RPS</a></li>
+    </ul> -->
+    <!-- TEMPLATE TAG -->
+    <ul>
+        {% for link,name in nav %}
+            <li><a href="{{link}}">{{name}}</a></li>        
+        {% endfor %}
     </ul>
     
+    {% if subnav %}
+        <h3>ini adalah subnav</h3>
+        <ul>
+            
+            {% for link, name in subnav %}
+                <li><a href="{{link}}">{{name}}</a></li>
+            {% endfor %}
+                
+        </ul>
+    {% endif %}
+        
+        
 </body>
 </html>
