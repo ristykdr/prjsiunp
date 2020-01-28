@@ -8,7 +8,8 @@ def index (request):
         'nav':[
             ['/','Home'],
             ['rps/','RPS'],
-        ]
+        ],
+        'banner':'img/icon_unp_trans.png',
     }
     return render(request,'index.html',context)
 

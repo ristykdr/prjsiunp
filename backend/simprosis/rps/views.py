@@ -13,7 +13,9 @@ def index(request): #index dari rps
         ],
         'subnav':[
             ['submenurps/','Sub-menu RPS'],
-        ]
+        ],
+        'banner':'rps/img/rps.png',
+        'css_app':'rps/css/styles.css',
     }
     return render(request,'index.html',context)
 
