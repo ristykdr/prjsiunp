@@ -13,8 +13,10 @@ def index(request): #index dari rps
         ],
         'subnav':[
             ['submenurps/','Sub-menu RPS'],
+            ['#','mennu 2'],
+            ['#','menu3']
         ],
-        'banner':'rps/img/rps.png',
+        'banner':'',
         'css_app':'rps/css/styles.css',
     }
     return render(request,'index.html',context)

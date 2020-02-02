@@ -9,7 +9,7 @@ def index (request):
             ['/','Home'],
             ['rps/','RPS'],
         ],
-        'banner':'img/icon_unp_trans.png',
+        'banner':'',#img/icon_unp_trans.png
     }
     return render(request,'index.html',context)
 
