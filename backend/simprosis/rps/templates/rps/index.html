@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{judul}}</title>
-</head>
-<body>
-    <h1>{{subjudul}}</h1>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut dignissimos magni ipsum adipisci iste possimus et architecto deleniti, nihil fuga ullam provident minus eius, atque laborum nemo suscipit itaque similique!</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores tenetur, recusandae corrupti molestiae sit eaque debitis, excepturi eligendi nisi dolor adipisci commodi similique veniam consequatur. Nulla numquam aliquid amet quia? </p>
-    <h2>login require</h2>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/rps">RPS</a></li>
-        <ul>
-            <li><a href="submenurps/">Sub Menu RPS</a></li>
-        </ul>
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="text-center">
+        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'img/undraw_posting_photo.svg' %}" alt="">
+    </div>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod minus asperiores deleniti? Quas laboriosam at ipsam aperiam sed consectetur, illum ducimus similique officia tempora optio, suscipit enim. Debitis, exercitationem earum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut distinctio, reiciendis fuga voluptatem explicabo consequatur optio omnis corporis dolore eius? Quod nobis ea rerum quaerat, rem laborum fugit architecto necessitatibus.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur facere, cumque dolorum laboriosam tempore veritatis quo, aspernatur sapiente at quae quidem obcaecati deserunt reprehenderit inventore iure tempora laborum molestias esse.
+    </p>
+{% endblock content %}
+    

@@ -3,8 +3,8 @@ from django.shortcuts import render
 
 def index (request):
     context ={
-        'judul':'Home',
-        'subjudul':'isi subjudul',
+        'appGroup':'Home',
+        'appName':'isi Sementara',
         'nav':[
             ['/','Home'],
             ['rps/','RPS'],

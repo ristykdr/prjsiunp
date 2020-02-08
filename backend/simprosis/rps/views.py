@@ -5,8 +5,8 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request): #index dari rps
     context = {
-        'judul':'Home RPS',
-        'subjudul':'subjudul home rps',
+        'appGroup':'Olah Data RPS',
+        'appName':'subjudul home rps',
         'nav':[
             ['/','Home'],
             ['','RPS'],
@@ -19,7 +19,7 @@ def index(request): #index dari rps
         'banner':'',
         'css_app':'rps/css/styles.css',
     }
-    return render(request,'index.html',context)
+    return render(request,'rps/index.html',context)
 
 def submenurps(request):
     context={
