@@ -20,6 +20,21 @@ from .import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^rps/',include('rps.urls')), #menghubungkan url rps dengan url project simprosis
+    re_path(r'^biodataDosen/',include('biodataDosen.urls')),
+    re_path(r'^biodataMahasiswa/',include('biodataMahasiswa.urls')),
+    re_path(r'^inputKRS/',include('inputKRS.urls')),
+    re_path(r'^olahDataDosen/',include('olahDataDosen.urls')),
+    re_path(r'^olahDataJurnalKuliah/',include('olahDataJurnalKuliah.urls')),
+    re_path(r'^olahDataMahasiswa/',include('olahDataMahasiswa.urls')),
+    re_path(r'^olahDataMatakuliah/',include('olahDataMatakuliah.urls')),
+    re_path(r'^olahDataNilai/',include('olahDataNilai.urls')),
+    re_path(r'^olahDataRPS/',include('olahDataRPS.urls')),
+    re_path(r'^presensiKuliah/',include('presensiKuliah.urls')),
+    re_path(r'^rekapHasilKuliah/',include('rekapHasilKuliah.urls')),
+    re_path(r'^rekapKRS/',include('rekapKRS.urls')),
+    re_path(r'^rekapPresensi/',include('rekapPresensi.urls')),
+    re_path(r'^rekapRPS/',include('rekapRPS.urls')),
+    re_path(r'^subPokokBahasan/',include('subPokokBahasan.urls')),
     re_path(r'^tes/$',views.tes),
     path('',views.index)
 ]

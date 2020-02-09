@@ -38,6 +38,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rps',
+    'biodataDosen',
+    'biodataMahasiswa',
+    'inputKRS',
+    'olahDataDosen',
+    'olahDataJurnalKuliah',
+    'olahDataMahasiswa',
+    'olahDataMatakuliah',
+    'olahDataNilai',
+    'olahDataRPS',
+    'presensiKuliah',
+    'rekapHasilKuliah',
+    'rekapKRS',
+    'rekapPresensi',
+    'rekapRPS',
+    'subPokokBahasan',
+    
 ]
 
 MIDDLEWARE = [
