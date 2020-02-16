@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     re_path(r'^$',views.index),
-    re_path(r'^submenurps/$',views.submenurps)
+    re_path(r'^submenurps/$',views.submenurps),
+    # re_path(r'^profile/$',views.profile)
 ]

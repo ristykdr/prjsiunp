@@ -15,7 +15,7 @@
   
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="/">
+          <a class="nav-link" href="{% url 'index' %}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
         </li>
@@ -37,10 +37,10 @@
           <div id="Operasional" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Menu Operasional</h6>
-              <a class="collapse-item" href="/olahDataDosen">Olah Data Dosen</a>
-              <a class="collapse-item" href="/olahDataMahasiswa">Olah Data Mahasiswa</a>
-              <a class="collapse-item" href="/olahDataMatakuliah">Olah Data Matakuliah</a>
-              <a class="collapse-item" href="/olahDataJurnalKuliah">Olah Data Jurnal Kuliah</a>
+              <a class="collapse-item" href="{% url 'olahDataDosen:index' %}">Olah Data Dosen</a>
+              <a class="collapse-item" href="{% url 'olahDataMahasiswa:index' %}">Olah Data Mahasiswa</a>
+              <a class="collapse-item" href="{% url 'olahDataMatakuliah:index' %}">Olah Data Matakuliah</a>
+              <a class="collapse-item" href="{% url 'olahDataJurnalKuliah:index' %}">Olah Data Jurnal Kuliah</a>
             </div>
           </div>
         </li>
@@ -52,10 +52,10 @@
           <div id="Laporan" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Menu Laporan</h6>
-              <a class="collapse-item" href="/rekapRPS">Rekap RPS</a>
-              <a class="collapse-item" href="/rekapKRS">Rekap KRS</a>
-              <a class="collapse-item" href="/rekapPresensi">Rekap Presensi</a>
-              <a class="collapse-item" href="/rekapHasilKuliah">Rekap Hasil Kuliah</a>
+              <a class="collapse-item" href="{% url 'rekapRPS:index' %}">Rekap RPS</a>
+              <a class="collapse-item" href="{% url 'rekapKRS:index' %}">Rekap KRS</a>
+              <a class="collapse-item" href="{% url 'rekapPresensi:index' %}">Rekap Presensi</a>
+              <a class="collapse-item" href="{% url 'rekapHasilKuliah:index' %}">Rekap Hasil Kuliah</a>
             </div>
           </div>
         </li>
@@ -67,9 +67,9 @@
           <div id="Dosen" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Menu Dosen</h6>
-              <a class="collapse-item" href="/biodataDosen">Biodata</a>
-              <a class="collapse-item" href="/olahDataRPS">Olah data RPS</a>
-              <a class="collapse-item" href="/olahDataNilai">Olah Data Nilai</a>
+              <a class="collapse-item" href="{% url 'biodataDosen:index' %}">Biodata Dosen</a>
+              <a class="collapse-item" href="{% url 'olahDataRPS:index' %}">Olah data RPS</a>
+              <a class="collapse-item" href="{% url 'olahDataNilai:index' %}">Olah Data Nilai</a>
             </div>
           </div>
         </li>
@@ -81,9 +81,9 @@
           <div id="Presensi" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Menu Presensi</h6>
-              <a class="collapse-item" href="/subPokokBahasan">Sub-Pokok Bahasan</a>
-              <a class="collapse-item" href="/presensiKuliah">Presensi Kuliah</a>
-              <a class="collapse-item" href="/rekapPresensi">Rekap Presensi</a>
+              <a class="collapse-item" href="{% url 'subPokokBahasan:index' %}">Sub-Pokok Bahasan</a>
+              <a class="collapse-item" href="{% url 'presensiKuliah:index' %}">Presensi Kuliah</a>
+              <a class="collapse-item" href="{% url 'rekapPresensi:index' %}">Rekap Presensi</a>
             </div>
           </div>
         </li>
@@ -95,8 +95,8 @@
           <div id="Mahasiswa" class="collapse" aria-labelledby="headingTwos" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Menu Mahasiswa</h6>
-              <a class="collapse-item" href="/biodataMahasiswa">Biodata Mahasiswa</a>
-              <a class="collapse-item" href="/inputKRS">Input KRS</a>
+              <a class="collapse-item" href="{% url 'biodataMahasiswa:index' %}">Biodata Mahasiswa</a>
+              <a class="collapse-item" href="{% url 'inputKRS:index' %}">Input KRS</a>
             </div>
           </div>
         </li>
