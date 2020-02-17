@@ -35,3 +35,15 @@ def create_user_profile(sender, instance,created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+# class penggunaAdmin(models.Model):
+#     nik = models.ForeignKey(userProfiles, on_delete=models.CASCADE)
+#     tanggalRegistrasi = models.DateTimeField(auto_now_add=True)
+#     keterangan = models.CharField(max_length=100)
+    
+#     class Meta:
+#         verbose_name = "penggunaAdmin"
+#         verbose_name_plural = "penggunaAdmin"
+
+#     def __str__(self):
+#         return self.nik
