@@ -20,6 +20,7 @@ class userProfiles(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     noKTP = models.IntegerField()
     nama = models.CharField(max_length=50)
+    alamat = models.TextField(default='')
     tanggalLahir = models.DateField(auto_now=False, auto_now_add=False)
     jenisKelamin = models.CharField(max_length=10, choices=list_kelamin)
     agama = models.CharField(max_length=50,choices=list_agama)

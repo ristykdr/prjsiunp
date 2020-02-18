@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {% for formRps in rps_form %}
+        {{formRps.label}}
+        {{formRps}}
+    {% endfor %}
+    <!-- <div class="form-group">
+        {{rps_form.kodemk.label}}
+        {{rps_form.kodemk}}
+    </div> -->
+    
+    <!-- <table>
+        {{rps_form.as_table}}
+    </table> -->
+    <button class="btn btn-primary" type="submit">Simpan</button>
+</form>
+{% endblock content %}

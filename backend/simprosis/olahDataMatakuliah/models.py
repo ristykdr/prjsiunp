@@ -6,6 +6,7 @@ class matakuliah(models.Model):
     nama = models.CharField(max_length=30)
     sks = models.IntegerField()
     semester = models.IntegerField()
+    jmlPertemuan = models.SmallIntegerField(default=0)
 
     class Meta:
         verbose_name = "matakuliah"
