@@ -1,4 +1,6 @@
 from django.contrib import admin
-from . import models
+from .models import rps, referensi, detilRPS
 # Register your models here.
-admin.site.register(models.rps)
+admin.site.register(rps)
+admin.site.register(referensi)
+admin.site.register(detilRPS)

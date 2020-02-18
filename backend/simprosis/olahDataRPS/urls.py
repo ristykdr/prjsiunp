@@ -5,5 +5,6 @@ from . import views
 app_name='olahDataRPS'
 urlpatterns = [
     re_path(r'^$',views.index, name='index'),
-    re_path(r'^create/$',views.create, name='create'),
+    re_path(r'^createrps/$',views.createrps, name='createrps'),
+    re_path(r'^createreferensi$',views.createreferensi, name='createreferensi')
 ]
