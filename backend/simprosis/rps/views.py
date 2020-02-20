@@ -38,8 +38,8 @@ def submenurps(request):
 @transaction.atomic
 def profile(request):
     pengguna=request.user.username
-    print('BROOOOO')
-    print(pengguna)
+    # print('BROOOOO')
+    # print(pengguna)
     data_user = User.objects.get(username=pengguna)
     id_pengguna=data_user.id
     dataFormUser = {
@@ -49,7 +49,7 @@ def profile(request):
     }
     data_profile = userProfiles.objects.get(namaUser_id=id_pengguna)
     dataFormProfile = {
-        'namaUser':data_profile.namaUser,
+        # 'namaUser':data_profile.namaUser,
         'noKTP':data_profile.noKTP,
         'nama':data_profile.nama,
         'alamat':data_profile.alamat,
@@ -63,11 +63,11 @@ def profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-        return redirect('rps:index')
+        return redirect('rps:profile')
     
     context ={
         'appGroup':'User Profiles',
-        'appName':'Detail User',
+        'appName':'Detail User : '+data_user.username,
         'user_form': user_form,
         'profile_form': profile_form
     }
