@@ -5,7 +5,7 @@ from  . models import userProfiles
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from . forms import userForm, userProfiles
+from . forms import userForm, userProfilesForm
 from django.contrib import messages
 
 # Create your views here.
@@ -34,23 +34,43 @@ def submenurps(request):
     }
     return render(request,'index.html',context)
 
-# @login_required
-# @transaction.atomic
-# def profile(request):
-#     if request.method == 'POST':
-#         user_form = userForm(request.POST, instance=request.user)
-#         profile_form = userProfiles(request.POST, instance=request.user.profile)
-#         if user_form.is_valid() and profile_form.is_valid():
-#             user_form.save()
-#             profile_form.save()
-#             messages.success(request, _('Your profile was successfully updated!'))
-#             return redirect('settings:profile')
-#         else:
-#             messages.error(request, _('Please correct the error below.'))
-#     else:
-#         user_form = userForm(instance=request.user)
-#         profile_form = userProfiles(instance=request.user.profile)
-#     return render(request, 'profiles/profile.html', {
-#         'user_form': user_form,
-#         'profile_form': profile_form
-#     })
+@login_required
+@transaction.atomic
+def profile(request):
+    pengguna=request.user.username
+    print('BROOOOO')
+    print(pengguna)
+    data_user = User.objects.get(username=pengguna)
+    id_pengguna=data_user.id
+    dataFormUser = {
+        'first_name': data_user.first_name,
+        'last_name':data_user.last_name,
+        'email':data_user.email,
+    }
+    data_profile = userProfiles.objects.get(namaUser_id=id_pengguna)
+    dataFormProfile = {
+        'namaUser':data_profile.namaUser,
+        'noKTP':data_profile.noKTP,
+        'nama':data_profile.nama,
+        'alamat':data_profile.alamat,
+        'tanggalLahir':data_profile.tanggalLahir,
+        'jenisKelamin':data_profile.jenisKelamin,
+        'agama':data_profile.agama,
+    }
+    user_form = userForm(request.POST or None, initial=dataFormUser, instance=data_user)
+    profile_form = userProfilesForm(request.POST or None, initial=dataFormProfile, instance=data_profile)
+    if request.method=='POST' :
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+        return redirect('rps:index')
+    
+    context ={
+        'appGroup':'User Profiles',
+        'appName':'Detail User',
+        'user_form': user_form,
+        'profile_form': profile_form
+    }
+    return render(request,'rps/profile.html',context)
+
+

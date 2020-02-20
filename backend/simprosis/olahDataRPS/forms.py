@@ -104,7 +104,7 @@ class referensiForm(forms.ModelForm):
                     'placeholder':'Pengarang / Penulisi'
                 }
             ),
-            'tahun':forms.TextInput(
+            'tahun':forms.NumberInput(
                 attrs={
                     'class':'form-control form-control-sm',
                     'placeholder':'Tahun terbit'

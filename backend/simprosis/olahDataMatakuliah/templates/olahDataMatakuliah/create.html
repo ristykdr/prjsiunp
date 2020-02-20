@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {% for mkForm in mk_form %}
+      {{mkForm.label}}
+      {{mkForm}}
+    {% endfor %}
+    <button class="btn btn-primary" type="submit">Simpan</button>
+</form>
+    
+{% endblock content %}
+    

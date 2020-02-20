@@ -19,7 +19,7 @@ from .import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^rps/',include('rps.urls')), #menghubungkan url rps dengan url project simprosis
+    re_path(r'^rps/',include('rps.urls',namespace='rps')), #menghubungkan url rps dengan url project simprosis
     re_path(r'^biodataDosen/',include('biodataDosen.urls',namespace='biodataDosen')),
     re_path(r'^biodataMahasiswa/',include('biodataMahasiswa.urls',namespace='biodataMahasiswa')),
     re_path(r'^inputKRS/',include('inputKRS.urls',namespace='inputKRS')),

@@ -12,6 +12,14 @@ class userProfilesForm(forms.ModelForm):
     
     class Meta:
         model = userProfiles
-        fields = ('noKTP','nama','tanggalLahir','jenisKelamin','agama')
+        fields = (
+            'namaUser',
+            'noKTP',
+            'nama',
+            'alamat',
+            'tanggalLahir',
+            'jenisKelamin',
+            'agama'
+            )
 
 
