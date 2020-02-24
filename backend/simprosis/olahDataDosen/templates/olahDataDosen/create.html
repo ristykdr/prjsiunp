@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  
+  <form method="post">
+      {% csrf_token %}
+      {% for form_dosen in formDosen %}
+        {{form_dosen.label}}  
+        {{form_dosen}}
+      {% endfor %}
+      <button class="btn btn-primary" type="submit">Simpan</button>
+  </form>
+  <h1>{{pesan}}</h1>
+{% endblock content %}

@@ -88,7 +88,7 @@ class userProfilesForm(forms.ModelForm):
             ),
             'tanggalLahir':forms.DateInput(
                 attrs={
-                    'class':'form-control form-control-sm',
+                    'class':'kalender',
                     'placeholder':'Masukkan Tangal Lahir'
                 }
             ),
