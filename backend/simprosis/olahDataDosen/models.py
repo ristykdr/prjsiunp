@@ -29,7 +29,7 @@ class dosen(models.Model):
         ('4d','IV/d'),
         ('4e','IV/e'),
     )
-    nik = models.ForeignKey(
+    nik = models.OneToOneField(
             userProfiles, 
             on_delete=models.CASCADE,
             unique=True,

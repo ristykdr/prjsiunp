@@ -22,7 +22,7 @@ def create(request):
     print('ini create bro')
     mk_form=matakuliahForm(request.POST or None)
     if request.method=='POST':
-        if mk_form.is_valid:
+        if mk_form.is_valid():
             mk_form.save()
             return redirect('olahDataMatakuliah:index')
     context={

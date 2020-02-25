@@ -12,7 +12,7 @@ class matakuliah(models.Model):
         (7,'Tujuh'),
         (8,'Delapan')
     )
-    kode = models.CharField(max_length=10)
+    kode = models.CharField(max_length=10,unique=True)
     nama = models.CharField(max_length=30)
     sks = models.IntegerField()
     semester = models.IntegerField(choices=list_semester)
@@ -23,7 +23,7 @@ class matakuliah(models.Model):
         verbose_name_plural = "matakuliah"
 
     def __str__(self):
-        return self.nama
+        return "{} - {}".format(self.kode,self.nama) 
     
 
         
