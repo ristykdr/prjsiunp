@@ -37,6 +37,7 @@ def submenurps(request):
 @login_required
 @transaction.atomic
 def profile(request):
+    pesan = None
     pengguna=request.user.username
     # print('BROOOOO')
     # print(pengguna)
@@ -60,16 +61,23 @@ def profile(request):
     user_form = userForm(request.POST or None, initial=dataFormUser, instance=data_user)
     profile_form = userProfilesForm(request.POST or None, initial=dataFormProfile, instance=data_profile)
     if request.method=='POST' :
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid:
             user_form.save()
-            profile_form.save()
+            if profile_form.is_valid:
+                profile_form.save()
+            else:
+                pesan='Form Profil tidak valid'
+        else:
+            pesan='Form user tidak valid'
+            
         return redirect('rps:profile')
     
     context ={
         'appGroup':'User Profiles',
         'appName':'Detail User : '+data_user.username,
         'user_form': user_form,
-        'profile_form': profile_form
+        'profile_form': profile_form,
+        'pesan':pesan
     }
     return render(request,'rps/profile.html',context)
 

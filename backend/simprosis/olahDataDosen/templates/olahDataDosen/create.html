@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% if pesan %}
+<div class="alert alert-danger alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Awas!</strong> {{pesan}}
+</div>
+{% endif %}
   
   <form method="post">
       {% csrf_token %}
       {% for form_dosen in formDosen %}
+      <div class="form-group">
         {{form_dosen.label}}  
         {{form_dosen}}
+      </div>
       {% endfor %}
       <button class="btn btn-primary" type="submit">Simpan</button>
   </form>
-  <h1>{{pesan}}</h1>
+
 {% endblock content %}

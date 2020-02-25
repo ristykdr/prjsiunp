@@ -3,10 +3,10 @@ from . models import dosen
 from django.forms import ValidationError
 
 class dosenForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super (dosenForm,self).__init__(*args, **kwargs)
-        for field in self.Meta.fields:
-            self.fields[field].required=True
+    # def __init__(self, *args, **kwargs):
+    #     super (dosenForm,self).__init__(*args, **kwargs)
+    #     for field in self.Meta.fields:
+    #         self.fields[field].required=True
     
     # def clean_nik(self):
     #     nik_input = self.cleaned_data["nik"]

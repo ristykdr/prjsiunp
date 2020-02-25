@@ -12,20 +12,21 @@ def index (request) :
     return render(request,'olahDataDosen/index.html',context)
 
 def create(request):
+    pesan=None
     formDosen = dosenForm(request.POST or None)
-    # print (dosenForm.re)
     if request.method=='POST':
         if formDosen.is_valid():
             formDosen.save()
-            # return redirect('olahDataDosen:create')
-            pesan=messages.success(request,'data berhasil tersimpan')
-            return redirect('olahDataDosen:create')
+            pesan='berhasil'
+            return redirect('olahDataDosen:index')
         else:
-            pesan=messages.error(request,'gagal')
+            pesan='Gagal menyimpan. User atau NIDN sudah, ada silahkan pilih User atau NIDN lain  '
+
     context={
         'appGroup' : 'Operasional',
         'appName' : 'Tambah Data Dosen',
         'formDosen':formDosen,
         'pesan':pesan
+
     }
     return render(request,'olahDataDosen/create.html',context)
