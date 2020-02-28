@@ -1,12 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="text-center">
-        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'img/undraw_posting_photo.svg' %}" alt="">
-    </div>
-    
-    <p>
-        daftar RPS
-    </p>
+<a class="btn btn-primary" href="{% url 'olahDataRPS:createrps' %}">Tambah RPS</a>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Matakuliah</th>
+                <th>Dosen Pengampu</th>
+                <th>Capaian Pembelajaran</th>
+                <th>Prasyarat</th>
+                <th>Ubah / Hapus</th>
+          
+            </tr>
+        </thead>
+        <tbody>
+            {% for rps in semua_rps %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{rps.kodemk}}</td>
+                <td>{{rps.dosenPengampu}}</td>
+                <td>{{rps.capaianPembelajaran}}</td>
+                <td>{{rps.prasyarat}}</td>
+                <td>
+                    <a class="btn btn-outline-success" 
+                        href="{% url 'olahDataRPS:updaterps' rps.id %}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" 
+                        href="{% url 'olahDataRPS:deleterps' rps.id %}">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
 {% endblock content %}
     

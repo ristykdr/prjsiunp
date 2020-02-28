@@ -8,16 +8,17 @@ class rps(models.Model):
     kodemk = models.ForeignKey(matakuliah, on_delete=models.CASCADE)
     dosenPengampu = models.ForeignKey(dosen, on_delete=models.CASCADE)
     capaianPembelajaran = models.TextField()
-    prasyarat = models.TextField(choices=list_matkul)
-    pathLokasi = models.TextField()
+    prasyarat = models.TextField(choices=list_matkul,blank=True)
+    pathLokasi = models.TextField(blank=True)
     deskripsi = models.TextField()
 
     class Meta:
         verbose_name = "rps"
         verbose_name_plural = "rps"
+        ordering =['-id']
 
     def __str__(self):
-        return " {} - {}".format(self.kodemk, matakuliah.nama)
+        return " {} ".format(self.kodemk)
 
     # def get_absolute_url(self):
     #     return reverse("rps_detail", kwargs={"pk": self.pk})

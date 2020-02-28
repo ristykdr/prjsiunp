@@ -5,6 +5,9 @@ from . import views
 app_name='olahDataDosen'
 urlpatterns = [
     re_path(r'^$',views.index, name='index'),
-    re_path(r'^create/$',views.create,name='create')
+    re_path(r'^create/$',views.create,name='create'),
+    re_path(r'^delete/(?P<del_id>[0-9]+)$',views.delete,name='delete'),
+    re_path(r'^update/(?P<update_id>[0-9]+)$',views.update,name='update'),
+    
 ]
 

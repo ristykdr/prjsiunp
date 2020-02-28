@@ -21,6 +21,7 @@ class matakuliah(models.Model):
     class Meta:
         verbose_name = "matakuliah"
         verbose_name_plural = "matakuliah"
+        ordering = ['-id']
 
     def __str__(self):
         return "{} - {}".format(self.kode,self.nama) 

@@ -44,6 +44,7 @@ class dosen(models.Model):
     class Meta:
         verbose_name = "dosen"
         verbose_name_plural ="dosen"
+        ordering =['-nik']
       
     def __str__(self):
         return "{} - {}".format(self.nidn, self.nik.nama)
