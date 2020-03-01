@@ -1,13 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="text-center">
-        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'img/undraw_posting_photo.svg' %}" alt="">
-    </div>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod minus asperiores deleniti? Quas laboriosam at ipsam aperiam sed consectetur, illum ducimus similique officia tempora optio, suscipit enim. Debitis, exercitationem earum!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut distinctio, reiciendis fuga voluptatem explicabo consequatur optio omnis corporis dolore eius? Quod nobis ea rerum quaerat, rem laborum fugit architecto necessitatibus.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur facere, cumque dolorum laboriosam tempore veritatis quo, aspernatur sapiente at quae quidem obcaecati deserunt reprehenderit inventore iure tempora laborum molestias esse.
-    </p>
+<a class="btn btn-primary" href="{% url 'olahDataMahasiswa:create' %}">Tambah Mahasiswa</a>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nama</th>
+                <th>NPM</th>
+                <th>Tahun Masuk</th>
+                <th>Kelas</th>
+                <th>Ubah / Hapus</th>
+          
+            </tr>
+        </thead>
+        <tbody>
+            {% for mhs in semua_mahasiswa %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{mhs.nik}}</td>
+                <td>{{mhs.npm}}</td>
+                <td>{{mhs.tahunMasuk}}</td>
+                <td>{{mhs.kelas}}</td>
+                <td>
+                    <a class="btn btn-outline-success" 
+                    href="{% url 'olahDataMahasiswa:update' mhs.id %}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" 
+                    href="{% url 'olahDataMahasiswa:delete' mhs.id %}">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
 {% endblock content %}
     

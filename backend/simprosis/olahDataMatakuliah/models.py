@@ -1,4 +1,5 @@
 from django.db import models
+from rps.models import prodi
 
 # Create your models here.
 class matakuliah(models.Model):
@@ -17,6 +18,7 @@ class matakuliah(models.Model):
     sks = models.IntegerField()
     semester = models.IntegerField(choices=list_semester)
     jmlPertemuan = models.SmallIntegerField(default=0)
+    programStudi = models.ForeignKey(prodi, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         verbose_name = "matakuliah"

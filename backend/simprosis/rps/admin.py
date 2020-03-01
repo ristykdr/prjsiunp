@@ -4,3 +4,5 @@ from django.contrib import admin
 from . import models
 
 admin.site.register(models.userProfiles)
+admin.site.register(models.fakultas)
+admin.site.register(models.prodi)

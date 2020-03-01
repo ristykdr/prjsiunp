@@ -89,7 +89,8 @@ class userProfilesForm(forms.ModelForm):
             'tanggalLahir':forms.DateInput(
                 attrs={
                     'class':'form-control form-control-sm',
-                    'placeholder':'Masukkan Tangal Lahir'
+                    'placeholder':'Masukkan Tangal Lahir',
+                    'type':'date'
                 }
             ),
             'jenisKelamin':forms.Select(
