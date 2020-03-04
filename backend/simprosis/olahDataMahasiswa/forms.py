@@ -25,6 +25,13 @@ class mahasiswaForm(forms.ModelForm):
                     'placeholder':'Pilih User'
                 }
             ),
+            # 'nik':forms.ModelChoiceField(queryset=userProfiles.objects.exclude(id__in=dosen.objects.all().values_list('nik_id',flat=True))
+                # attrs={
+                #     # 'queryset':'userProfiles.objects.exclude(id__in=dosen.objects.all().values_list('nik_id',flat=True))',
+                #     'class':'form-control form-control-sm',
+                #     'placeholder':'Pilih User'
+                # }
+            # ),
             'npm':forms.TextInput(
                 attrs={
                     'class':'form-control form-control-sm',

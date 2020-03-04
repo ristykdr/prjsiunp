@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import mahasiswaForm
 from .models import mahasiswa
+from rps.models import userProfiles
+from olahDataDosen.models import dosen
+
 # Create your views here.
 def index (request) :
     semua_mahasiswa = mahasiswa.objects.all()
@@ -14,6 +17,9 @@ def index (request) :
 
 def create(request):
     formMahasiswa = mahasiswaForm(request.POST or None)
+    formMahasiswa.fields['nik'].queryset = userProfiles.objects.exclude(
+        id__in=dosen.objects.all().values_list('nik_id',flat=True)
+    )
     if request.method=='POST':
         if formMahasiswa.is_valid():
             formMahasiswa.save()
@@ -31,6 +37,9 @@ def delete(request,del_id):
 
 def update(request,update_id):
     dataMahasiswa = mahasiswa.objects.get(id=update_id)
+    formMahasiswa.fields['nik'].queryset = userProfiles.objects.exclude(
+        id__in=dosen.objects.all().values_list('nik_id',flat=True)
+    )
     dataFormMahasiswa = {
         'nik':dataMahasiswa.nik,
         'npm':dataMahasiswa.npm,

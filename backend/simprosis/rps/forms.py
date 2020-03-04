@@ -1,6 +1,7 @@
 from django import forms
+from django.forms import ModelForm,inlineformset_factory
 from django.contrib.auth.models import User
-from . models import userProfiles
+from . models import userProfiles, fakultas,prodi
 
 class userForm(forms.ModelForm):
     
@@ -105,4 +106,21 @@ class userProfilesForm(forms.ModelForm):
             )
         }
 
+class fakultasForm(forms.ModelForm):
+    
+    class Meta:
+        model = fakultas
+        fields = [
+            'namaFakultas'
+        ]
 
+class prodiForm(forms.ModelForm):
+    
+    class Meta:
+        model = prodi
+        # fields = [
+
+        # ]
+        exclude=()
+
+prodiFormset = inlineformset_factory(fakultas,prodi,form=prodiForm,extra=1)

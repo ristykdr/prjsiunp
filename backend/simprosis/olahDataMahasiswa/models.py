@@ -6,7 +6,10 @@ class mahasiswa(models.Model):
     listTahunMasuk = []
     for r in range((datetime.now().year-7),(datetime.now().year+1)):
         listTahunMasuk.append((r,r))
-    nik = models.ForeignKey(userProfiles, on_delete=models.CASCADE, unique=True)
+    nik = models.ForeignKey(
+        userProfiles, 
+        on_delete=models.CASCADE, 
+        unique=True,)
     npm = models.CharField(max_length=20,unique=True)
     tahunMasuk = models.IntegerField(choices=listTahunMasuk)
     kelas = models.CharField(max_length=2)
