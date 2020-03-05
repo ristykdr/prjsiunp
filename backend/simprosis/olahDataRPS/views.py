@@ -47,7 +47,14 @@ def updaterps(request,update_id):
         'capaianPembelajaran':data_rps.capaianPembelajaran,
         'prasyarat':data_rps.prasyarat,
         'pathLokasi':data_rps.pathLokasi,
-        'deskripsi':data_rps.deskripsi
+        'deskripsi':data_rps.deskripsi,
+
+        'tanggalPenyusunan':data_rps.tanggalPenyusunan,
+        'capaianPembelajaranProdi':data_rps.capaianPembelajaranProdi,
+        'materiPembelajaran':data_rps.materiPembelajaran,
+        'mediaBelajar':data_rps.mediaBelajar,
+        'teamTeaching':data_rps.teamTeaching,
+        'idref':data_rps.idref
     }
     rps_form = rpsForm(request.POST or None, initial=dataFormRPS, instance=data_rps)
     if request.method == 'POST':

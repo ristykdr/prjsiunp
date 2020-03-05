@@ -9,14 +9,16 @@ class matakuliahForm(forms.ModelForm):
             'nama',
             'sks',
             'semester',
-            'jmlPertemuan'
+            'jmlPertemuan',
+            'rumpunMatakuliah'
         ]
         labels = {
             'kode':'Kode Matakuliah',
             'nama':'Nama Matakuliah',
             'sks':'SKS',
             'semester':'Semester',
-            'jmlPertemuan':'Jumlah Pertemuan'
+            'jmlPertemuan':'Jumlah Pertemuan',
+            'rumpunMatakuliah':'Rumpun Matakuliah'
         }
 
         widgets = {
@@ -47,6 +49,12 @@ class matakuliahForm(forms.ModelForm):
                 attrs={
                     'class':'form-control form-control-sm',
                     'placeholder':'Jumlah pertemuan dalam satu semester'
+                }
+            ),
+            'rumpunMatakuliah':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Rumpun Matakuliah'
                 }
             )
         }

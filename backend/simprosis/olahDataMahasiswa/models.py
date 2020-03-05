@@ -6,7 +6,7 @@ class mahasiswa(models.Model):
     listTahunMasuk = []
     for r in range((datetime.now().year-7),(datetime.now().year+1)):
         listTahunMasuk.append((r,r))
-    nik = models.ForeignKey(
+    nik = models.OneToOneField(
         userProfiles, 
         on_delete=models.CASCADE, 
         unique=True,)

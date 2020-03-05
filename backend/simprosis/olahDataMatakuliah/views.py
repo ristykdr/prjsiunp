@@ -44,7 +44,8 @@ def update(request,update_id):
         'nama':data_mk.nama,
         'sks':data_mk.sks,
         'semester':data_mk.semester,
-        'jmlPertemuan':data_mk.jmlPertemuan
+        'jmlPertemuan':data_mk.jmlPertemuan,
+        'rumpunMatakuliah':data_mk.rumpunMatakuliah
     }
     mk_form=matakuliahForm(request.POST or None,initial=dataMatakuliah, instance=data_mk)
     if request.method=='POST':

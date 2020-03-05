@@ -11,7 +11,14 @@ class rpsForm(forms.ModelForm):
             'capaianPembelajaran',
             'prasyarat',
             'pathLokasi',
-            'deskripsi'
+            'deskripsi',
+
+            'tanggalPenyusunan',
+            'capaianPembelajaranProdi',
+            'materiPembelajaran',
+            'mediaBelajar',
+            'teamTeaching',
+            'idref'
         ]
         labels = {
             'kodemk':'Matakuliah',
@@ -20,6 +27,13 @@ class rpsForm(forms.ModelForm):
             'prasyarat':'Matakuliah Prasyarat',
             'pathLokasi':'File',
             'deskripsi':'Deskripsi',
+
+            'tanggalPenyusunan': 'Tanggal Penyusunan',
+            'capaianPembelajaranProdi':'Capaian Pembelajaran Program Studi',
+            'materiPembelajaran':'Materi Pembelajaran',
+            'mediaBelajar':'Media Belajar',
+            'teamTeaching':'Dosen Team Teaching',
+            'idref':'Referensi'
         }
 
         widgets = {
@@ -52,6 +66,38 @@ class rpsForm(forms.ModelForm):
                 }
             ),
             'deskripsi':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+
+            'tanggalPenyusunan':forms.DateInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'type':'date'
+                }
+            ),
+            'capaianPembelajaranProdi':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+            'materiPembelajaran':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+            'mediaBelajar':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+            'teamTeaching':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+            'idref':forms.Select(
                 attrs={
                     'class':'form-control form-control-sm'
                 }

@@ -19,6 +19,7 @@ class matakuliah(models.Model):
     semester = models.IntegerField(choices=list_semester)
     jmlPertemuan = models.SmallIntegerField(default=0)
     programStudi = models.ForeignKey(prodi, on_delete=models.CASCADE, blank=True, null=True)
+    rumpunMatakuliah = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         verbose_name = "matakuliah"
