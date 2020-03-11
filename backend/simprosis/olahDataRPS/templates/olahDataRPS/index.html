@@ -21,7 +21,7 @@
                 <td>{{forloop.counter}}</td>
                 <td>{{rps.kodemk}}</td>
                 <td>{{rps.dosenPengampu}}</td>
-                <td>{{rps.capaianPembelajaran}}</td>
+                <td>{{rps.capaianPembelajaran|truncatewords:5}}</td>
                 <td>{{rps.prasyarat}}</td>
                 <td>
                     <a class="btn btn-outline-success" 
@@ -38,6 +38,15 @@
 
         </tbody>
     </table>
+</div>
+<div class="card">
+    <div class="card-header">
+        Header
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Title</h5>
+        <p class="card-text">Content</p>
+    </div>
 </div>
 {% endblock content %}
     

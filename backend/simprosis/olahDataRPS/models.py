@@ -3,24 +3,21 @@ from olahDataDosen.models import dosen
 from olahDataMatakuliah.models import matakuliah
 # Create your models here.
 
-class referensi(models.Model):
-    list_jenis=(
-        ('utama','Utama'),
-        ('pendukung','Pendukung')
-    )
-    jenis =models.CharField(max_length=15, choices=list_jenis)
+
+class pustaka(models.Model):
     tipe = models.CharField(max_length=30)
     judul = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     tahun = models.SmallIntegerField()
     kota = models.CharField(max_length=50)
     penerbit = models.CharField(max_length=100)
+
     class Meta:
-        verbose_name = 'referensi'
-        verbose_name_plural = 'referensi'
+        verbose_name = "pustaka"
+        verbose_name_plural = "pustaka"
 
     def __str__(self):
-        return " {} - {}".format(self.id, self.judul)
+        return "{} - {} : {}".format(self.tipe, self.judul,self.author)
 
 
 class rps(models.Model):
@@ -35,8 +32,8 @@ class rps(models.Model):
     capaianPembelajaranProdi = models.TextField(blank=True)
     materiPembelajaran = models.TextField(blank=True)
     mediaBelajar=models.TextField(blank=True)
-    teamTeaching=models.TextField(blank=True)
-    idref = models.ForeignKey(referensi, on_delete=models.CASCADE)
+    teamTeaching=models.TextField(blank=True,null=True)
+    # idref = models.CharField(max_length=10)
 
     class Meta:
         verbose_name = "rps"
@@ -49,6 +46,22 @@ class rps(models.Model):
     # def get_absolute_url(self):
     #     return reverse("rps_detail", kwargs={"pk": self.pk})
 
+class referensi(models.Model):
+    list_jenis=(
+        ('utama','Utama'),
+        ('pendukung','Pendukung')
+    )
+    refRps = models.ForeignKey(rps, on_delete=models.CASCADE)
+    refPustaka = models.ForeignKey(pustaka, on_delete=models.CASCADE)
+    jenis =models.CharField(max_length=15, choices=list_jenis)
+
+
+    class Meta:
+        verbose_name = 'referensi'
+        verbose_name_plural = 'referensi'
+
+    def __str__(self):
+        return " {} - {}".format(self.id, self.refPustaka)
 
 
 class detilRPS(models.Model):

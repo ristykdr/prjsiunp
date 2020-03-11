@@ -1,5 +1,8 @@
 from django import forms
-from .models import rps, referensi
+from django.forms import ModelForm, inlineformset_factory
+from .models import rps, referensi, rps
+from tinymce.widgets import TinyMCE
+
 
 class rpsForm(forms.ModelForm):
     
@@ -18,7 +21,7 @@ class rpsForm(forms.ModelForm):
             'materiPembelajaran',
             'mediaBelajar',
             'teamTeaching',
-            'idref'
+            # 'idref'
         ]
         labels = {
             'kodemk':'Matakuliah',
@@ -33,7 +36,7 @@ class rpsForm(forms.ModelForm):
             'materiPembelajaran':'Materi Pembelajaran',
             'mediaBelajar':'Media Belajar',
             'teamTeaching':'Dosen Team Teaching',
-            'idref':'Referensi'
+            # 'idref':'Referensi'
         }
 
         widgets = {
@@ -97,11 +100,18 @@ class rpsForm(forms.ModelForm):
                     'class':'form-control form-control-sm'
                 }
             ),
-            'idref':forms.Select(
-                attrs={
-                    'class':'form-control form-control-sm'
-                }
-            )
+            # 'teamTeaching':TinyMCE(
+            #     attrs={
+            #         'class':'form-control',
+            #         'cols': 80, 
+            #         'rows':20,
+            #     }
+            # ),
+            # 'idref':forms.Select(
+            #     attrs={
+            #         'class':'form-control form-control-sm'
+            #     }
+            # )
         }
 
 class referensiForm(forms.ModelForm):
@@ -109,64 +119,34 @@ class referensiForm(forms.ModelForm):
     class Meta:
         model = referensi
         fields = [
+            'refRps',
+            'refPustaka',
             'jenis',
-            'tipe',
-            'judul',
-            'author',
-            'tahun',
-            'kota',
-            'penerbit'
+            
         ]
         labels={
+            'refRps':'Matakuliah',
+            'refPustaka':'Pustaka',
             'jenis':'Jenis Referensi',
-            'tipe':'Tipe Referensi (Jurnal, Buku, dll..)',
-            'judul':'Judul',
-            'author':'Pengarang / Penulis',
-            'tahun':'Tahun Terbit',
-            'kota':'Kota Terbit',
-            'penerbit':'Penerbit'
         }
         widgets={
-            'jenis':forms.Select(
+            'refRps':forms.Select(
                 attrs={
                     'class':'form-control form-control-sm'
                 }
             ),
-            'tipe':forms.TextInput(
+            'refPustaka':forms.Select(
                 attrs={
-                    'class':'form-control form-control-sm',
-                    'placeholder':'Tipe referensi'
+                    'class':'form-control form-control-sm'
                 }
             ),
-            'judul':forms.TextInput(
+
+            'jenis':forms.TextInput(
                 attrs={
                     'class':'form-control form-control-sm',
-                    'placeholder':'Judul referensi'
+                    'placeholder':'JeniS : Buku, Jurnal dll'
                 }
             ),
-            'author':forms.TextInput(
-                attrs={
-                    'class':'form-control form-control-sm',
-                    'placeholder':'Pengarang / Penulisi'
-                }
-            ),
-            'tahun':forms.NumberInput(
-                attrs={
-                    'class':'form-control form-control-sm',
-                    'placeholder':'Tahun terbit'
-                }
-            ),
-            'kota':forms.TextInput(
-                attrs={
-                    'class':'form-control form-control-sm',
-                    'placeholder':'Kota Terbit'
-                }
-            ),
-            'penerbit':forms.TextInput(
-                attrs={
-                    'class':'form-control form-control-sm',
-                    'placeholder':'Penerbit'
-                }
-            )
         }
 
+# rpsFormSet = inlineformset_factory(rps,referensi)

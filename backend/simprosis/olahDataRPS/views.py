@@ -54,7 +54,7 @@ def updaterps(request,update_id):
         'materiPembelajaran':data_rps.materiPembelajaran,
         'mediaBelajar':data_rps.mediaBelajar,
         'teamTeaching':data_rps.teamTeaching,
-        'idref':data_rps.idref
+        # 'idref':data_rps.idref
     }
     rps_form = rpsForm(request.POST or None, initial=dataFormRPS, instance=data_rps)
     if request.method == 'POST':
@@ -82,3 +82,4 @@ def createreferensi(request):
         'referensi_form':referensi_form
     }
     return render(request,'olahDataRPS/createreferensi.html',context)
+

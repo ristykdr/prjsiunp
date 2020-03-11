@@ -36,5 +36,6 @@ urlpatterns = [
     re_path(r'^rekapRPS/',include('rekapRPS.urls',namespace='rekapRPS')),
     re_path(r'^subPokokBahasan/',include('subPokokBahasan.urls',namespace='subPokokBahasan')),
     re_path(r'^tes/$',views.tes),
+    re_path(r'^tinymce/', include('tinymce.urls')),
     path('',views.index, name='index')
 ]
