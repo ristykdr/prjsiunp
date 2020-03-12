@@ -55,13 +55,12 @@ class referensi(models.Model):
     refPustaka = models.ForeignKey(pustaka, on_delete=models.CASCADE)
     jenis =models.CharField(max_length=15, choices=list_jenis)
 
-
     class Meta:
         verbose_name = 'referensi'
         verbose_name_plural = 'referensi'
 
     def __str__(self):
-        return " {} - {}".format(self.id, self.refPustaka)
+        return " {} - {}".format(self.refRps, self.refPustaka)
 
 
 class detilRPS(models.Model):

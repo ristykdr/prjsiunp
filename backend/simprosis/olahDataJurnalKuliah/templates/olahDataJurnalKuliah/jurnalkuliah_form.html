@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        
+        <table class="table">
+            {{ dtlJurnalKuliah.management_form }}
+
+            {% for form in dtlJurnalKuliah.forms %}
+                {% if forloop.first %}
+                    <thead>
+                    <tr>
+                        {% for field in form.visible_fields %}
+                            <th>{{ field.label|capfirst }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                {% endif %}
+                <tr class="{% cycle row1 row2 %} formset_row">
+                    {% for field in form.visible_fields %}
+                        <td>
+                            {# Include the hidden fields in the form #}
+                            {% if forloop.first %}
+                                {% for hidden in form.hidden_fields %}
+                                    {{ hidden }}
+                                {% endfor %}
+                            {% endif %}
+                            {{ field.errors.as_ul }}
+                            {{ field }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <input class="btn btn-primary" type="submit" value="Save"/> <a class="btn btn-outline-primary" href="{% url 'olahDataJurnalKuliah:jurnalKuliahList' %}">Daftar Jurnal</a>
+    </form>
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.formset.js' %}"></script>
+    <script type="text/javascript">
+        $('.formset_row').formset({
+            addText: '<i class="fa fa-plus"></i>Tambah Pertemuan',
+            deleteText: 'Hapus',
+            prefix: 'detilJurnalKuliah_set'
+        });
+    </script>
+{% endblock content %}
