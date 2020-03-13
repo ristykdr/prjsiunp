@@ -17,48 +17,48 @@ class jurnalKuliahForm(forms.ModelForm):
             'ruang',
             'pjmk'
         ]
-        labels ={
-            'mk':'Matakuliah',
-            'tahunAjaran':'Tahun Ajaran',
-            'semester':'Semester',
-            'dosenPengajar':'Dosen Pengampu',
-            'ruang':'Ruang Kuliah',
-            'pjmk':'PJMK'
-        }
-        widgets = {
-            'mk':forms.Select(
-                attrs={
-                    'class':'form-control form-control-sm'
-                }
-            ),
-            'tahunAjaran':forms.Select(
-                attrs={
-                    'class':'form-control form-control-sm'
-                }
-            ),
-            'semester':forms.Select(
-                attrs={
-                    'class':'form-control form-control-sm'
-                }
-            ),
-            'dosenPengajar':forms.Select(
-                attrs={
-                    'class':'form-control form-control-sm'
-                }
-            ),
-            'ruang':forms.TextInput(
-                attrs={
-                    'class':'form-control form-control-sm',
-                    'placeholder':'Ruang Kelas'
-                }
-            ),
-            'pjmk':forms.TextInput(
-                attrs={
-                    'class':'form-control form-control-sm',
-                    'placeholder':'PJMK'
-                }
-            )
-        }
+        # labels ={
+        #     'mk':'Matakuliah',
+        #     'tahunAjaran':'Tahun Ajaran',
+        #     'semester':'Semester',
+        #     'dosenPengajar':'Dosen Pengampu',
+        #     'ruang':'Ruang Kuliah',
+        #     'pjmk':'PJMK'
+        # }
+        # widgets = {
+        #     'mk':forms.Select(
+        #         attrs={
+        #             'class':'form-control form-control-sm'
+        #         }
+        #     ),
+        #     'tahunAjaran':forms.Select(
+        #         attrs={
+        #             'class':'form-control form-control-sm'
+        #         }
+        #     ),
+        #     'semester':forms.Select(
+        #         attrs={
+        #             'class':'form-control form-control-sm'
+        #         }
+        #     ),
+        #     'dosenPengajar':forms.Select(
+        #         attrs={
+        #             'class':'form-control form-control-sm'
+        #         }
+        #     ),
+        #     'ruang':forms.TextInput(
+        #         attrs={
+        #             'class':'form-control form-control-sm',
+        #             'placeholder':'Ruang Kelas'
+        #         }
+        #     ),
+        #     'pjmk':forms.TextInput(
+        #         attrs={
+        #             'class':'form-control form-control-sm',
+        #             'placeholder':'PJMK'
+        #         }
+        #     )
+        # }
 
 
 class detilJurnalKuliahForm(forms.ModelForm):
@@ -68,16 +68,16 @@ class detilJurnalKuliahForm(forms.ModelForm):
         """Meta definition for detilJurnalKuliahform."""
 
         model = detilJurnalKuliah
-        # exclude=()
-        fields = [
-            'jurnal',
-            'pertemuan',
-            'tanggal',
-            'jamMulai',
-            'jamSelesai',
-            'materi',
-            'metode'
-        ]
+        exclude=()
+        # fields = [
+        #     'jurnal',
+        #     'pertemuan',
+        #     'tanggal',
+        #     'jamMulai',
+        #     'jamSelesai',
+        #     'materi',
+        #     'metode'
+        # ]
         labels ={
             'jurnal':'Jurnal',
             'pertemuan':'Pertemuan',
