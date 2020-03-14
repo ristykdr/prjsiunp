@@ -1,8 +1,65 @@
 from django.shortcuts import render, redirect
-from .forms import rpsForm, referensiForm
-from .models import rps
+from django.views.generic import ListView, DetailView, CreateView
+from .forms import rpsForm, referensiForm,detilRPSForm
+from .models import rps, detilRPS
 
 # Create your views here.
+
+class rpsListView(ListView):
+    model = rps
+    # template_name = "TEMPLATE_NAME"
+    ordering = ['-id']
+    paginate_by = 10
+    extra_context = {
+        'appGroup':'Dosen',
+        'appName':'Olah Data RPS', 
+    }
+
+    def get_context_data(self, *args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        kwargs = self.kwargs
+        return super().get_context_data(*args, **kwargs)
+
+
+
+class rpsDetailView(DetailView):
+    model = rps
+    # template_name = "TEMPLATE_NAME"
+    extra_context = {
+        'appGroup':'Dosen',
+        'appName':'Olah Data RPS', 
+    }
+
+    def get_context_data(self, *args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        
+        rincianRps = detilRPS.objects.filter(idRps_id=self.kwargs['pk'])
+        self.kwargs.update({'rincianRps':rincianRps})
+
+        kwargs = self.kwargs
+        # print(kwargs)
+        # print('HALOOOOOOO')
+        # print(kwargs['pk'])
+        return super().get_context_data(*args, **kwargs)
+    
+
+
+class detilRPSCreateView(CreateView):
+    form_class = detilRPSForm
+    # model = detilRPS
+    template_name = 'olahDataRPS/createDetilRPS.html'
+    extra_context = {
+        'appGroup':'Dosen',
+        'appName':'Olah Data RPS', 
+    }
+
+    def get_context_data(self,*args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        kwargs = self.kwargs
+        print(kwargs)
+        return super().get_context_data(*args, **kwargs)
+
+
 def index(request):
     semua_rps=rps.objects.all()
     context = {

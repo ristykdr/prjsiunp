@@ -23,6 +23,7 @@ class pustaka(models.Model):
 class rps(models.Model):
     list_matkul=matakuliah.objects.values_list('kode','nama')
     kodemk = models.ForeignKey(matakuliah, on_delete=models.CASCADE)
+    rumpun = models.CharField(max_length=50,blank=True)
     dosenPengampu = models.ForeignKey(dosen, on_delete=models.CASCADE)
     capaianPembelajaran = models.TextField()
     prasyarat = models.TextField(choices=list_matkul,blank=True)
@@ -65,9 +66,8 @@ class referensi(models.Model):
 
 class detilRPS(models.Model):
     idRps = models.ForeignKey(rps, on_delete=models.CASCADE)
-    pertemuan = models.SmallIntegerField
+    pertemuan = models.SmallIntegerField()
     kemampuan = models.TextField(blank=True)
-    indikatorPenilaian = models.TextField(blank=True)
     materiBelajar = models.TextField(blank=True)
     bentukMetodeBelajar = models.CharField(max_length=100)
     pengalamanBelajarOffline = models.TextField(blank=True)
@@ -84,4 +84,4 @@ class detilRPS(models.Model):
         verbose_name_plural = 'detilRPS'
 
     def __str__(self):
-        return " {} - {}".format(self.pertemuan, self.materi)
+        return " {} - {}".format(self.pertemuan, self.materiBelajar)

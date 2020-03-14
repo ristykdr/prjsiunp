@@ -16,12 +16,12 @@
             </tr>
         </thead>
         <tbody>
-            {% for rps in semua_rps %}
+            {% for rps in object_list %}
             <tr>
                 <td>{{forloop.counter}}</td>
                 <td>
                     <!-- arahkan ke detailView -->
-                    <a href="#">{{rps.kodemk}}</a>    
+                    <a href="{% url 'olahDataRPS:detailrps' rps.pk %}">{{rps.kodemk}}</a>    
                 </td>
                 <td>{{rps.dosenPengampu}}</td>
                 <td>{{rps.capaianPembelajaran|truncatewords:5}}</td>
@@ -42,7 +42,24 @@
         </tbody>
     </table>
 </div>
-<div class="card">
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<!-- <div class="card">
     <div class="card-header">
         Header
     </div>
@@ -50,6 +67,6 @@
         <h5 class="card-title">Title</h5>
         <p class="card-text">Content</p>
     </div>
-</div>
+</div> -->
 {% endblock content %}
     
