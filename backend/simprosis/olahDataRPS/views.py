@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView
-from .forms import rpsForm, referensiForm,detilRPSForm
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .forms import rpsForm, referensiForm,detilRPSForm, detilRPSUpdateForm
 from .models import rps, detilRPS
 
 # Create your views here.
@@ -57,6 +58,45 @@ class detilRPSCreateView(CreateView):
         self.kwargs.update(self.extra_context)
         kwargs = self.kwargs
         print(kwargs)
+        return super().get_context_data(*args, **kwargs)
+
+
+
+class detilRPSUpdateView(UpdateView):
+    form_class = detilRPSUpdateForm
+    model = detilRPS
+    template_name = 'olahDataRPS/createDetilRPS.html'
+
+    extra_context = {
+        'appGroup':'Dosen',
+        'appName':'Olah Data RPS', 
+    }
+
+    def get_context_data(self,*args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        kwargs = self.kwargs
+        print(kwargs)
+        return super().get_context_data(*args, **kwargs)
+
+
+
+class detilRPSDeleteView(DeleteView):
+    model = detilRPS
+    extra_context = {
+        'appGroup':'Dosen',
+        'appName':'Olah Data RPS', 
+    }
+    
+    def get_success_url(self):
+        idRps = self.object.idRps
+        return reverse_lazy('olahDataRPS:detailrps',kwargs={'pk':idRps.id})
+    
+    def get_context_data(self, *args, **kwargs):
+        self.kwargs.update(self.extra_context)
+
+        kwargs = self.kwargs
+        print(kwargs)
+        
         return super().get_context_data(*args, **kwargs)
 
 

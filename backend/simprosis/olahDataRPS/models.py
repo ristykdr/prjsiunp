@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 from olahDataDosen.models import dosen
 from olahDataMatakuliah.models import matakuliah
 # Create your models here.
@@ -82,6 +83,14 @@ class detilRPS(models.Model):
     class Meta:
         verbose_name = 'detilRPS'
         verbose_name_plural = 'detilRPS'
+
+
+    def get_absolute_url(self):
+        # print('ini dari model detilRPS')
+        # id_rps = self.idRps
+        # print(int(id_rps))
+        return reverse_lazy('olahDataRPS:detailrps', kwargs={'pk':self.idRps.id})
+    
 
     def __str__(self):
         return " {} - {}".format(self.pertemuan, self.materiBelajar)

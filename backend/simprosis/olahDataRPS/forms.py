@@ -248,6 +248,102 @@ class detilRPSForm(forms.ModelForm):
             ),
         }
 
-
+class detilRPSUpdateForm(forms.ModelForm):
+    class Meta:
+        model = detilRPS
+        fields = [
+            # 'idRps',
+            'pertemuan',
+            'kemampuan',
+            'materiBelajar',
+            'bentukMetodeBelajar',
+            'pengalamanBelajarOffline',
+            'pengalamanBelajarOnlineSinkron',
+            'pengalamanBelajarOnlineAsinkron',
+            'teknikPenilaian',
+            'kriteriaPenilaian',
+            'indikatorPenilaian',
+            'bobotPenilaian',
+        ]
+        labels = {
+            # 'idRps':'RPS',
+            'pertemuan':'Pertemuan',
+            'kemampuan':'Kemampuan',
+            'materiBelajar':'Materi Pembelajaran',
+            'bentukMetodeBelajar':'Metode Pembelajaran',
+            'pengalamanBelajarOffline':'Pengalaman Belajar Offline',
+            'pengalamanBelajarOnlineSinkron':'Pengalaman Belajar Online Sinkron',
+            'pengalamanBelajarOnlineAsinkron':'Pengalaman Belajar Online Asinkron',
+            'teknikPenilaian':'Teknik Penilaian',
+            'kriteriaPenilaian':'Kriteria Penilaian',
+            'indikatorPenilaian':'Indikator Penilaian',
+            'bobotPenilaian':'Bobot Penilaian',
+        }
+        widgets = {
+            # 'idRps':forms.Select(
+            #     attrs={
+            #         'class':'form-control form-control-sm'
+            #     }
+            # ),
+            'pertemuan':forms.NumberInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                }
+            ),
+            'kemampuan':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    
+                }
+            ),
+            'materiBelajar':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+            'bentukMetodeBelajar':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+            'pengalamanBelajarOffline':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+            'pengalamanBelajarOnlineSinkron':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+            'pengalamanBelajarOnlineAsinkron':forms.Textarea(
+                attrs={
+                    'class':'form-control form-control-sm'
+                }
+            ),
+            'teknikPenilaian':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Teknik Penilaian'
+                }
+            ),
+            'kriteriaPenilaian':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Kriteria Penilaian'
+                }
+            ),
+            'indikatorPenilaian':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Indikator Penilaian'
+                }
+            ),
+            'bobotPenilaian':forms.NumberInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                }
+            ),
+        }
 
 # rpsFormSet = inlineformset_factory(rps,referensi)

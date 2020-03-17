@@ -90,7 +90,7 @@
        
     </table> 
 </div>
-<h1>{{object.id}}</h1>
+<!-- <h1>{{object.id}}</h1> -->
 
 <br>
 
@@ -116,19 +116,27 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for dtRps in rincianRps %}
                     <tr>
-                        {% for dtRps in rincianRps %}
-                            <td>{{forloop.counter}}</td>
-                            <td>{{dtRps.pertemuan}}</td>
-                            <td>{{dtRps.kemampuan|truncatewords:5}}</td>
-                            <td>{{dtRps.materiBelajar|truncatewords:5}}</td>
-                            <td>{{dtRps.bobotPenilaian}}</td>
-                            <td></td>
-                        {% empty %}
-                            <td colspan="6"> Belum ada....</td>
-                        {% endfor %}
+                        <td>{{forloop.counter}}</td>
+                        <td>{{dtRps.pertemuan}}</td>
+                        <td>{{dtRps.kemampuan|truncatewords:4}}</td>
+                        <td>{{dtRps.materiBelajar|truncatewords:4}}</td>
+                        <td>{{dtRps.bobotPenilaian}}</td>
+                        <td>
+                            <a class="btn btn-outline-success" 
+                                href="{% url 'olahDataRPS:detilRPSUpdateView' dtRps.id %}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a class="btn btn-outline-danger" 
+                                href="{% url 'olahDataRPS:deletedetilrps' dtRps.id %}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
                     </tr>
-                    
+                    {% empty %}
+                        <td colspan="6"> Belum ada....</td>
+                    {% endfor %}
                 </tbody>
             </table>
             <a class="btn btn-primary btn-block" href="{% url 'olahDataRPS:createdetailrps' object.id %}">Tambah Pertemuan</a>
