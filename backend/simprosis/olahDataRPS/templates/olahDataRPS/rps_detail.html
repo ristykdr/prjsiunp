@@ -135,7 +135,9 @@
                         </td>
                     </tr>
                     {% empty %}
+                    <tr>
                         <td colspan="6"> Belum ada....</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
@@ -143,5 +145,50 @@
         </div>
     </div>
 </div>
-<a class="btn btn-outline-primary btn-block" href="{% url 'olahDataRPS:index' %}">Kembali ke daftar RPS</a>
+<div class="card">
+    <div class="card-header">
+        Referensi Pustaka 
+    </div>
+    <div class="card-body">
+        <!-- <h5 class="card-title">Title</h5>
+        <p class="card-text">Content</p> -->
+        
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Jenis</td>
+                        <td>Judul</td>
+                        <td>Pengarang</td>
+                        <!-- <td>Tahun</td> -->
+                        <td>Edit / Hapus</td>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for ref in daftarReferensi %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{ref.jenis}}</td>
+                            <td>{{ref.judul}}</td>
+                            <td>{{ref.author}}</td>
+                            <td>
+                                <a class="btn btn-outline-success" 
+                                    href="{% url 'olahDataRPS:updatereferensi' ref.id %}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn btn-outline-danger" 
+                                    href="{% url 'olahDataRPS:deletereferensi' ref.id %}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+            <a class="btn btn-primary btn-block" href="{% url 'olahDataRPS:createreferensi' object.id %}">Tambah Pustaka</a>
+        </div>
+    </div>
+</div>
+<a class="btn btn-outline-primary btn-block" href="#">Kembali ke daftar RPS</a>
 {% endblock content %}

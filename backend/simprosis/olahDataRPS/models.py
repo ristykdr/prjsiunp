@@ -54,16 +54,24 @@ class referensi(models.Model):
         ('pendukung','Pendukung')
     )
     refRps = models.ForeignKey(rps, on_delete=models.CASCADE)
-    refPustaka = models.ForeignKey(pustaka, on_delete=models.CASCADE)
     jenis =models.CharField(max_length=15, choices=list_jenis)
+    tipe = models.CharField(max_length=30, blank=True,null=True)
+    judul = models.CharField(max_length=100, blank=True,null=True)
+    author = models.CharField(max_length=100, blank=True,null=True)
+    tahun = models.SmallIntegerField(blank=True,null=True)
+    kota = models.CharField(max_length=50,blank=True,null=True)
+    penerbit = models.CharField(max_length=100, blank=True,null=True)
 
     class Meta:
         verbose_name = 'referensi'
         verbose_name_plural = 'referensi'
 
     def __str__(self):
-        return " {} - {}".format(self.refRps, self.refPustaka)
+        return " {} - {}".format(self.refRps, self.judul)
 
+    def get_absolute_url(self):
+        return reverse_lazy('olahDataRPS:detailrps', kwargs={"pk": self.refRps.id})
+    
 
 class detilRPS(models.Model):
     idRps = models.ForeignKey(rps, on_delete=models.CASCADE)

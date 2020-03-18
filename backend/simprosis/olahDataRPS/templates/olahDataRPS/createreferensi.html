@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if referensi_form.errors %}
-    {% for field in referensi_form %}
+{% if form.errors %}
+    {% for field in form %}
         {% for error in field.errors %}
             <div class="alert alert-danger alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -9,7 +9,7 @@
             </div>
         {% endfor %}
     {% endfor %}
-    {% for error in referensi_form.non_field_errors %}
+    {% for error in form.non_field_errors %}
         <div class="alert alert-danger alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>{{ error|escape }}</strong>
@@ -19,10 +19,12 @@
 
   <form method="post">
       {% csrf_token %}
-      {% for formReferensi in referensi_form %}
+      {{form}}
+      <!-- {% for formReferensi in referensi_form %}
         {{formReferensi.label}}
         {{formReferensi}}
-      {% endfor %}
+      {% endfor %} -->
+      <br>
       <button class="btn btn-primary" type="submit">Simpan</button>
   </form>
 {% endblock content %}

@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .forms import rpsForm, referensiForm,detilRPSForm, detilRPSUpdateForm
-from .models import rps, detilRPS
+from .forms import (
+    rpsForm, 
+    referensiForm,
+    detilRPSForm, 
+    detilRPSUpdateForm)
+from .models import rps, detilRPS, referensi
 
 # Create your views here.
 
@@ -37,6 +42,9 @@ class rpsDetailView(DetailView):
         rincianRps = detilRPS.objects.filter(idRps_id=self.kwargs['pk'])
         self.kwargs.update({'rincianRps':rincianRps})
 
+        daftarReferensi = referensi.objects.filter(refRps_id=self.kwargs['pk'])
+        self.kwargs.update({'daftarReferensi':daftarReferensi})
+
         kwargs = self.kwargs
         # print(kwargs)
         # print('HALOOOOOOO')
@@ -47,6 +55,8 @@ class rpsDetailView(DetailView):
 
 class detilRPSCreateView(CreateView):
     form_class = detilRPSForm
+    # initial={'idRps':2}
+    # initial={'idRps':self.kwargs['id_rps']}
     # model = detilRPS
     template_name = 'olahDataRPS/createDetilRPS.html'
     extra_context = {
@@ -57,7 +67,50 @@ class detilRPSCreateView(CreateView):
     def get_context_data(self,*args, **kwargs):
         self.kwargs.update(self.extra_context)
         kwargs = self.kwargs
-        print(kwargs)
+        # print(kwargs)
+        return super().get_context_data(*args, **kwargs)
+
+    def get_initial(self):
+        idRps = get_object_or_404(rps, id=self.kwargs['id_rps'])
+        return {
+            'idRps':idRps
+        }
+
+
+class referensiCreateView(CreateView):
+    # model = referensi  
+    form_class = referensiForm
+    template_name = 'olahDataRPS/createreferensi.html'
+    extra_context = {
+        'appGroup':'Dosen',
+        'appName':'Olah Data RPS', 
+    }
+
+    def get_context_data(self,*args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        kwargs = self.kwargs
+        # print(kwargs)
+        return super().get_context_data(*args, **kwargs)
+    
+    def get_initial(self):
+        refRps = get_object_or_404(rps, id=self.kwargs['id_rps'])
+        return {
+            'refRps':refRps
+        }
+
+
+
+class referensiUpdateView(UpdateView):
+    form_class = referensiForm
+    model = referensi
+    template_name = 'olahDataRPS/createreferensi.html'
+    extra_context = {
+        'appGroup':'Dosen',
+        'appName':'Olah Data RPS', 
+    }
+    def get_context_data(self, *args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        kwargs = self.kwargs
         return super().get_context_data(*args, **kwargs)
 
 
@@ -96,7 +149,24 @@ class detilRPSDeleteView(DeleteView):
 
         kwargs = self.kwargs
         print(kwargs)
-        
+
+        return super().get_context_data(*args, **kwargs)
+
+
+class referensiDeleteView(DeleteView):
+    model = referensi
+    extra_context = {
+        'appGroup':'Dosen',
+        'appName':'Olah Data RPS', 
+    }
+    
+    def get_success_url(self):
+        refRps = self.object.refRps
+        return reverse_lazy('olahDataRPS:detailrps',kwargs={'pk':refRps.id})
+    
+    def get_context_data(self, *args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        kwargs = self.kwargs
         return super().get_context_data(*args, **kwargs)
 
 
@@ -165,18 +235,18 @@ def updaterps(request,update_id):
     }
     return render(request,'olahDataRPS/create.html',context)
 
-def createreferensi(request):
-    referensi_form = referensiForm(request.POST or None)
-    if request.method == 'POST':
-        if referensi_form.is_valid():
-            referensi_form.save()
+# def createreferensi(request):
+#     referensi_form = referensiForm(request.POST or None)
+#     if request.method == 'POST':
+#         if referensi_form.is_valid():
+#             referensi_form.save()
 
-            return redirect('olahDataRPS:index') 
-            #sementara, akan dipidah di homereferensi.html
-    context = {
-        'appGroup':'Dosen',
-        'appName':'Create Data Referensi',
-        'referensi_form':referensi_form
-    }
-    return render(request,'olahDataRPS/createreferensi.html',context)
+#             return redirect('olahDataRPS:index') 
+#             #sementara, akan dipidah di homereferensi.html
+#     context = {
+#         'appGroup':'Dosen',
+#         'appName':'Create Data Referensi',
+#         'referensi_form':referensi_form
+#     }
+#     return render(request,'olahDataRPS/createreferensi.html',context)
 

@@ -100,18 +100,7 @@ class rpsForm(forms.ModelForm):
                     'class':'form-control form-control-sm'
                 }
             ),
-            # 'teamTeaching':TinyMCE(
-            #     attrs={
-            #         'class':'form-control',
-            #         'cols': 80, 
-            #         'rows':20,
-            #     }
-            # ),
-            # 'idref':forms.Select(
-            #     attrs={
-            #         'class':'form-control form-control-sm'
-            #     }
-            # )
+
         }
 
 class referensiForm(forms.ModelForm):
@@ -120,14 +109,23 @@ class referensiForm(forms.ModelForm):
         model = referensi
         fields = [
             'refRps',
-            'refPustaka',
             'jenis',
-            
+            'tipe',
+            'judul',
+            'author',
+            'tahun',
+            'kota',
+            'penerbit',
         ]
         labels={
             'refRps':'Matakuliah',
-            'refPustaka':'Pustaka',
             'jenis':'Jenis Referensi',
+            'tipe':'Tipe',
+            'judul':'Judul',
+            'author':'Author',
+            'tahun':'Tahun Terbit',
+            'kota':'Kota',
+            'penerbit':'Penerbit',
         }
         widgets={
             'refRps':forms.Select(
@@ -135,16 +133,45 @@ class referensiForm(forms.ModelForm):
                     'class':'form-control form-control-sm'
                 }
             ),
-            'refPustaka':forms.Select(
+            'jenis':forms.Select(
                 attrs={
-                    'class':'form-control form-control-sm'
+                    'class':'form-control form-control-sm',
+                    
                 }
             ),
-
-            'jenis':forms.TextInput(
+            'tipe':forms.TextInput(
                 attrs={
                     'class':'form-control form-control-sm',
                     'placeholder':'JeniS : Buku, Jurnal dll'
+                }
+            ),
+            'judul':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Judul pustaka'
+                }
+            ),
+            'author':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Author / Pengarang'
+                }
+            ),
+            'tahun':forms.NumberInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                }
+            ),
+            'kota':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Kota Terbit'
+                }
+            ),
+            'penerbit':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Penerbit'
                 }
             ),
         }
