@@ -8,7 +8,7 @@ from .forms import (
     detilRPSForm, 
     detilRPSUpdateForm)
 from .models import rps, detilRPS, referensi
-
+from olahDataMatakuliah.models import matakuliah
 # Create your views here.
 
 class rpsListView(ListView):
@@ -45,10 +45,19 @@ class rpsDetailView(DetailView):
         daftarReferensi = referensi.objects.filter(refRps_id=self.kwargs['pk'])
         self.kwargs.update({'daftarReferensi':daftarReferensi})
 
+        kodeMk= rps.objects.values_list('kodemk_id', flat=True).get(id=self.kwargs['pk'])
+        self.kwargs.update({'kodeMk':kodeMk})
+
+        mk = matakuliah.objects.get(id=self.kwargs['kodeMk'])
+        self.kwargs.update({'mk':mk})
+
+
+
         kwargs = self.kwargs
-        # print(kwargs)
-        # print('HALOOOOOOO')
-        # print(kwargs['pk'])
+        print(kwargs)
+        print('HALOOOOOOO')
+        print(kwargs['kodeMk'])
+        print(self.object.kodemk)
         return super().get_context_data(*args, **kwargs)
     
 

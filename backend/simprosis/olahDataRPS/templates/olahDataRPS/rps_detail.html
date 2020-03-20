@@ -16,8 +16,8 @@
         <tr>
             <td>{{object.kodemk}}</td>
             <td>{{object.rumpun}}</td>
-            <td>BOBOT (sks)</td>
-            <td>Semester</td>
+            <td>{{mk.sks}} (sks)</td>
+            <td>{{mk.semester}}</td>
             <td>{{object.tanggalPenyusunan}}</td>
         </tr>
         <tr>
@@ -190,5 +190,5 @@
         </div>
     </div>
 </div>
-<a class="btn btn-outline-primary btn-block" href="#">Kembali ke daftar RPS</a>
+<a class="btn btn-outline-primary btn-block" href="{% url 'olahDataRPS:index' %}">Kembali ke daftar RPS</a>
 {% endblock content %}

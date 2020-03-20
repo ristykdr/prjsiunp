@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from olahDataMatakuliah.models import matakuliah
 from olahDataDosen.models import dosen
 from datetime import datetime
@@ -21,6 +22,7 @@ class jurnalKuliah(models.Model):
     dosenPengajar = models.ForeignKey(dosen, on_delete=models.CASCADE)
     ruang = models.CharField(max_length=5, blank=True, null= True)
     pjmk = models.CharField(max_length=50, blank=True, null= True)
+    kelas = models.CharField(max_length=2)
 
     class Meta:
         """Meta definition for jurnalKuliah."""
@@ -32,6 +34,10 @@ class jurnalKuliah(models.Model):
     def __str__(self):
         """Unicode representation of jurnalKuliah."""
         return "{}-{}".format(self.tahunAjaran, self.mk)
+    
+    def get_absolute_url(self):
+        return reverse('olahDataJurnalKuliah:jurnalKuliahList')
+    
 
 class detilJurnalKuliah(models.Model):
     """Model definition for detilJurnalKuliah."""
@@ -51,3 +57,7 @@ class detilJurnalKuliah(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.jurnal, self.pertemuan)
+
+    def get_absolute_url(self):
+        return reverse('subPokokBahasan:detiljurnalkuliah', kwargs={"pk": self.jurnal.id})
+    

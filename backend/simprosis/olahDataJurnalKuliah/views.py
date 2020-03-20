@@ -2,7 +2,12 @@ from django.shortcuts import render
 from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
-from . forms import jurnalKuliahForm, detilJurnalKuliahForm, JurnalFormset
+from . forms import (
+        jurnalKuliahForm, 
+        detilJurnalKuliahForm, 
+        JurnalFormset, 
+        jurnalKuliahForm
+    )
 from . models import jurnalKuliah, detilJurnalKuliah
 
 # Create your views here.
@@ -29,15 +34,28 @@ class jurnalKuliahListView(ListView):
 
 
 class jurnalKuliahCreateView(CreateView):
-    model = jurnalKuliah
-    fields = [
-        'mk',
-        'tahunAjaran',
-        'semester',
-        'dosenPengajar',
-        'ruang',
-        'pjmk'
-    ]
+    form_class = jurnalKuliahForm
+    template_name = 'olahDataJurnalKuliah/jurnalkuliah_form.html'
+    extra_context = {
+        'appGroup':'Operasional',
+        'appName':'Olah Data Jurnal Kuliah', 
+    }
+
+    def get_context_data(self,*args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        kwargs = self.kwargs
+        # print(kwargs)
+        return super().get_context_data(*args, **kwargs)
+    # model = jurnalKuliah
+
+    # fields = [
+    #     'mk',
+    #     'tahunAjaran',
+    #     'semester',
+    #     'dosenPengajar',
+    #     'ruang',
+    #     'pjmk'
+    # ]
 
 
 class jurnalPerkuliahanCreateView(CreateView):
