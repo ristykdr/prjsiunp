@@ -20,7 +20,7 @@ from .forms import detilJurnalKuliahForm, updatedetilJurnalKuliahForm
 class detilRPSListView(ListView): #rubah menjadi detailView
     model = detilRPS
     template_name = 'subPokokBahasan/listRpsUntukJurnal.html'
-    paginate_by = 10
+    # paginate_by = 10
     extra_context = {
         'appGroup':'Presensi',
         'appName':'Pilih Pertemuan untuk jurnal kuliah', 
@@ -34,6 +34,7 @@ class detilRPSListView(ListView): #rubah menjadi detailView
     def get_context_data(self, *args, **kwargs):
         self.kwargs.update(self.extra_context)
         kwargs = self.kwargs
+        print (kwargs)
         return super().get_context_data(*args, **kwargs)
 
 
@@ -101,15 +102,58 @@ class detilJurnalKuliahCreateView(CreateView):
     def get_context_data(self,*args, **kwargs):
         self.kwargs.update(self.extra_context)
         kwargs = self.kwargs
-        # print(kwargs)
+        print('dari get_context_data')
+        print(kwargs)
         return super().get_context_data(*args, **kwargs)
 
-    def get_initial(self):
+    def get_initial(self, *args, **kwargs):
         jurnal = get_object_or_404(jurnalKuliah,id=self.kwargs['id_jurnal'])
+        print('dari get initial')
+        print (kwargs)
         return{
             'jurnal':jurnal
         }
 
+
+class detilJurnalKuliahFromRPSCreateView(CreateView):
+    form_class = detilJurnalKuliahForm
+    template_name = 'subPokokBahasan/createdetilJurnalKualiah.html'
+    extra_context = {
+        'appGroup':'Presensi',
+        'appName':'Tambah Pokok Bahasan', 
+    }
+
+    def get_context_data(self,*args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        kwargs = self.kwargs
+        print('dari get_context_data')
+        print(kwargs)
+        return super().get_context_data(*args, **kwargs)
+
+    def get_initial(self, *args, **kwargs):
+        jurnal = get_object_or_404(jurnalKuliah,id=self.kwargs['id_jurnal'])
+
+        # id_rps=rps.objects.values_list('id',flat=True).get(kodemk_id=self.object.mk_id)
+        # ambil isi pertemuan dari detilRPS berdasar id detilRPS
+        pertemuan = detilRPS.objects.values_list('pertemuan', flat=True).get(id=self.kwargs['id_rps'])
+
+        # ambil isi materiBelajar dari detilRPS berdasar id detilRPS
+        materiBelajar = detilRPS.objects.values_list('materiBelajar', flat=True).get(id=self.kwargs['id_rps'])
+        
+        # ambil isi bentukMetodeBelajar dari detilRPS berdasar id detilRPS
+        bentukMetodeBelajar = detilRPS.objects.values_list('bentukMetodeBelajar', flat=True).get(id=self.kwargs['id_rps'])
+
+        print('dari get initial')
+        print (kwargs)
+        print('=============')
+        print(jurnal)
+        print(pertemuan)
+        return{
+            'jurnal':jurnal,
+            'pertemuan':pertemuan,
+            'materi':materiBelajar,
+            'metode':bentukMetodeBelajar
+        }
 
 
 class detilJurnalKuliahUpdateView(UpdateView):

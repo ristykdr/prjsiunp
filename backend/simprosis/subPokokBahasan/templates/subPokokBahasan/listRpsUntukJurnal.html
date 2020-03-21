@@ -7,7 +7,7 @@
                     <th>Pertemuan</th>
                     <th>Materi</th>
                     <th>Metode</th>
-                    <th>Pakai</th>
+                    <th>Gunakan</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,8 +19,8 @@
                     <td>{{dtRps.bentukMetodeBelajar|truncatewords:3}}</td>
                     <td>
                         <a class="btn btn-outline-success" 
-                        href="#">
-                        <i class="fa fa-folder"></i>
+                        href="{% url 'subPokokBahasan:createdetiljurnalfromrps' id_jurnal dtRps.id %}">
+                        <i class="fa fa-clone"></i>
                         </a>
                     </td>
                 </tr>

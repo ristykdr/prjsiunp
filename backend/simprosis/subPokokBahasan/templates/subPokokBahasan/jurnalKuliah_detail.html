@@ -47,8 +47,8 @@
                             <td>{{dtJurnal.tanggal}}</td>
                             <td>{{dtJurnal.jamMulai}}</td>
                             <td>{{dtJurnal.jamSelesai}}</td>
-                            <td>{{dtJurnal.materi|truncatewords:2}}</td>
-                            <td>{{dtJurnal.metode}}</td>
+                            <td>{{dtJurnal.materi|truncatewords:3}}</td>
+                            <td>{{dtJurnal.metode|truncatewords:3}}</td>
                             <td>
                                 <a class="btn btn-outline-success" href="{% url 'subPokokBahasan:updatedetiljurnal' dtJurnal.id %}">
                                     <i class="fa fa-edit"></i>
@@ -70,7 +70,7 @@
         <a class="btn btn-primary btn-block" href="{% url 'subPokokBahasan:createdetiljurnal' object.id %}">Tambah Pertemuan</a>
         
         {% if id_rps %}
-            <a class="btn btn-info btn-block" href="{% url 'subPokokBahasan:detiljurnalfromrps' id_rps %}">Tambah Pertemuan dari RPS</a>
+            <a class="btn btn-info btn-block" href="{% url 'subPokokBahasan:detiljurnalfromrps' id_rps object.id %}">Tambah Pertemuan dari RPS</a>
         {% else %}
             <a class="btn btn-danger btn-block" href="{% url 'olahDataRPS:index' %}">RPS Belum ada, klik tombol ini untuk menambah RPS</a>
         {% endif %}
