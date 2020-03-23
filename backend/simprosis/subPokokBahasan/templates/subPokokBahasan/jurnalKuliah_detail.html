@@ -31,12 +31,13 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <td>Pertemuan</td>
+                        <td>Pert</td>
                         <td>Tanggal</td>
                         <td>Mulai</td>
                         <td>Selesai</td>
                         <td>Materi</td>
                         <td>Metode</td>
+                        <td>Presensi</td>
                         <td>Edit / Hapus</td>
                     </tr>
                 </thead>
@@ -47,8 +48,12 @@
                             <td>{{dtJurnal.tanggal}}</td>
                             <td>{{dtJurnal.jamMulai}}</td>
                             <td>{{dtJurnal.jamSelesai}}</td>
-                            <td>{{dtJurnal.materi|truncatewords:3}}</td>
-                            <td>{{dtJurnal.metode|truncatewords:3}}</td>
+                            <td>{{dtJurnal.materi|truncatewords:2}}</td>
+                            <td>{{dtJurnal.metode|truncatewords:2}}</td>
+                            <td><a class="btn btn-outline-info" href="#">
+                                    <i class="fa fa-qrcode"></i>
+                                </a>
+                            </td>
                             <td>
                                 <a class="btn btn-outline-success" href="{% url 'subPokokBahasan:updatedetiljurnal' dtJurnal.id %}">
                                     <i class="fa fa-edit"></i>
