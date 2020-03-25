@@ -12,6 +12,7 @@ from olahDataMatakuliah.models import matakuliah
 from olahDataJurnalKuliah.models import jurnalKuliah,detilJurnalKuliah
 from olahDataRPS.models import rps, detilRPS
 from .forms import detilJurnalKuliahForm, updatedetilJurnalKuliahForm
+from presensiKuliah.models import presensi
 
 # Create your views here.
 
@@ -195,6 +196,28 @@ class detilJurnalKuliahDeleteView(DeleteView):
     def get_success_url(self):
         jurnal = self.object.jurnal
         return reverse_lazy('subPokokBahasan:detiljurnalkuliah', kwargs={'pk':jurnal.id})
+
+
+# UNTUK PRESENSI
+
+class presensiDetailView(DetailView):
+    model = jurnalKuliah
+    template_name = 'subPokokBahasan/presensi_form.html'
+    extra_context = {
+        'appGroup':'Presensi',
+        'appName':'Presensi kuliah', 
+    }
+
+    def get_context_data(self, *args, **kwargs):
+        self.kwargs.update(self.extra_context)
+
+        dataKuliah = detilJurnalKuliah.objects.all().get(id=self.kwargs['id_dtJurnal'])
+        self.kwargs.update({'dataKuliah':dataKuliah})
+
+        kwargs = self.kwargs
+        print(kwargs)
+        return super().get_context_data(*args, **kwargs)
+
 
 
 def index(request):

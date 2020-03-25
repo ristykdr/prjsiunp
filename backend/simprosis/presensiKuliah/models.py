@@ -11,7 +11,7 @@ class presensi(models.Model):
     # TODO: Define fields here
     jurnalPerkuliahan = models.ForeignKey(detilJurnalKuliah, on_delete=models.CASCADE, null=True)
     npm = models.ForeignKey(mahasiswa, on_delete=models.CASCADE)
-    presensi = models.BooleanField(default=True)
+    presensi = models.BooleanField(default=False)
 
     class Meta:
         """Meta definition for presensi."""
@@ -20,4 +20,4 @@ class presensi(models.Model):
         verbose_name_plural = 'presensi'
 
     def __str__(self):
-        return "{}-{}".format(self.jurnal, self.npm)
+        return "{}-{}".format(self.jurnalPerkuliahan, self.npm)

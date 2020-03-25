@@ -12,7 +12,7 @@ class mahasiswa(models.Model):
         unique=True,)
     npm = models.CharField(max_length=20,unique=True)
     tahunMasuk = models.IntegerField(choices=listTahunMasuk)
-    kelas = models.CharField(max_length=2)
+    kelas = models.CharField(max_length=2, blank=True, null=True)
 
     class Meta:
         verbose_name = "mahasiswa"

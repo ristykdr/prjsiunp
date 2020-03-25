@@ -103,34 +103,45 @@ class jurnalKuliahUpdateView(UpdateView):
 
 
 class jurnalPerkuliahanUpdateView(UpdateView):
+    form_class = jurnalKuliahForm
     model = jurnalKuliah
-    fields = [
-        'mk',
-        'tahunAjaran',
-        'semester',
-        'dosenPengajar',
-        'ruang',
-        'pjmk'
-    ]
+    template_name = 'olahDataJurnalKuliah/jurnalkuliah_form.html'
+    extra_context = {
+        'appGroup':'Operasional',
+        'appName':'Olah Data Jurnal Kuliah', 
+    }
+    def get_context_data(self, *args, **kwargs):
+        self.kwargs.update(self.extra_context)
+        kwargs = self.kwargs
+        return super().get_context_data(*args, **kwargs)
+
+    # fields = [
+    #     'mk',
+    #     'tahunAjaran',
+    #     'semester',
+    #     'dosenPengajar',
+    #     'ruang',
+    #     'pjmk'
+    # ]
     success_url = reverse_lazy('olahDataJurnalKuliah:jurnalKuliahList')
     
-    def get_context_data(self,**kwargs):
-        data = super(jurnalPerkuliahanUpdateView, self).get_context_data(**kwargs)
-        if self.request.POST :
-            data['dtlJurnalKuliah']=JurnalFormset(self.request.POST, instance=self.object)
-        else:
-            data['dtlJurnalKuliah']=JurnalFormset(instance = self.object)
-        return data
+    # def get_context_data(self,**kwargs):
+    #     data = super(jurnalPerkuliahanUpdateView, self).get_context_data(**kwargs)
+    #     if self.request.POST :
+    #         data['dtlJurnalKuliah']=JurnalFormset(self.request.POST, instance=self.object)
+    #     else:
+    #         data['dtlJurnalKuliah']=JurnalFormset(instance = self.object)
+    #     return data
     
-    def form_valid(self, form):
-        context = self.get_context_data()
-        dtlJurnalKuliah = context['dtlJurnalKuliah']
-        with transaction.atomic():
-            self.object = form.save()
-            if dtlJurnalKuliah.is_valid():
-                dtlJurnalKuliah.instance=self.object
-                dtlJurnalKuliah.save()
-        return super(jurnalPerkuliahanUpdateView,self).form_valid(form)
+    # def form_valid(self, form):
+    #     context = self.get_context_data()
+    #     dtlJurnalKuliah = context['dtlJurnalKuliah']
+    #     with transaction.atomic():
+    #         self.object = form.save()
+    #         if dtlJurnalKuliah.is_valid():
+    #             dtlJurnalKuliah.instance=self.object
+    #             dtlJurnalKuliah.save()
+    #     return super(jurnalPerkuliahanUpdateView,self).form_valid(form)
     
 
 class jurnalKuliahDeleteView(DeleteView):

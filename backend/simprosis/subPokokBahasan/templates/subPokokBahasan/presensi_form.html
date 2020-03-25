@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+{% load qr_code %}
+<div class="table table-responsive">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <td>Matakuliah</td>
+                    <td>{{object.mk}}</td>
+                    <td>Kelas</td>
+                    <td>{{object.kelas}}</td>
+                    <td>Jam</td>
+                    <td>{{dataKuliah.jamMulai}} - {{dataKuliah.jamSelesai}}</td>
+                    
+                </tr>
+                <tr>
+                    <td>Dosen</td>
+                    <td>{{object.dosenPengajar}}</td>
+                    <td>Materi</td>
+                    <td colspan="3">{{dataKuliah.materi|truncatewords:20}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-7">
+        <div class="card border-primary">
+            <div class="card-header">
+                Mahasiswa Hadir (Jumlah)
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th>NPM</th>
+                            <th>Nama</th>
+                            <th>Waktu</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>asd</td>
+                                <td>asd</td>
+                                <td>asd</td>
+                            </tr>
+                            <tr>
+                                <td>asd</td>
+                                <td>asd</td>
+                                <td>asd</td>
+                            </tr>
+                            <tr>
+                                <td>asd</td>
+                                <td>asd</td>
+                                <td>asd</td>
+                            </tr>
+                            <tr>
+                                <td>asd</td>
+                                <td>asd</td>
+                                <td>asd</td>
+                            </tr>
+                            <tr>
+                                <td>asd</td>
+                                <td>asd</td>
+                                <td>asd</td>
+                            </tr>
+                            <tr>
+                                <td>asd</td>
+                                <td>asd</td>
+                                <td>asd</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="card">
+            <div class="card-body">
+                {% qr_from_text id_dtJurnal size="L" border=6 %}
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-7">
+        <div class="card border-primary">
+            <div class="card-header">
+                Mahasiswa Peserta Kuliah (Jumlah)
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th>NPM</th>
+                            <th>Nama</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>asdas</td>
+                                <td>asdas</td>
+                            </tr>
+                            <tr>
+                                <td>asdas</td>
+                                <td>asdas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

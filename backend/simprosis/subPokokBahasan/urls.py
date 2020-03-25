@@ -8,12 +8,14 @@ from . views import (
     detilJurnalKuliahUpdateView,
     detilJurnalKuliahDeleteView,
     detilRPSListView,
+    presensiDetailView,
 )
 
 app_name='subPokokBahasan'
 urlpatterns = [
-    # re_path(r'^$',views.index,name='index'),
+    # tambahkan url presensi ke app presensiKuliah
     re_path(r'^$', jurnalKuliahListView.as_view(),name='index'),
+    re_path(r'^presensi/(?P<pk>[0-9]+)/(?P<id_dtJurnal>[0-9]+)$',presensiDetailView.as_view(),name='presensi'),
     re_path(r'^(?P<pk>[0-9]+)$',jurnalKuliahDetailView.as_view(), name='detiljurnalkuliah'),
     re_path(r'^createdetiljurnalfromrps/(?P<id_jurnal>[0-9]+)/(?P<id_rps>[0-9]+)$',detilJurnalKuliahFromRPSCreateView.as_view(),name='createdetiljurnalfromrps'),
     re_path(r'^createdetiljurnal/(?P<id_jurnal>[0-9]+)$',detilJurnalKuliahCreateView.as_view(),name='createdetiljurnal'),
