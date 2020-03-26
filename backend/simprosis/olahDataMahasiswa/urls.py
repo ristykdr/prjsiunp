@@ -1,11 +1,16 @@
 from django.urls import path, re_path, include
 from django.conf.urls import url
-from . import views
+from .views import (
+    mahasiswaCreateView,
+    mahasiswaUpdateView,
+    mahasiswaListView,
+    mahasiswaDeleteView
+)
 
 app_name='olahDataMahasiswa'
 urlpatterns = [
-    re_path(r'^$',views.index, name='index'),
-    re_path(r'^create/$',views.create,name='create'),
-    re_path(r'^delete/(?P<update_id>[0-9]+)$',views.update,name='update'),
-    re_path(r'^update/(?P<del_id>[0-9]+)$',views.delete,name='delete')
+    re_path(r'^$',mahasiswaListView.as_view(),name='index'),
+    re_path(r'^create/$',mahasiswaCreateView.as_view(),name='create'),
+    re_path(r'^update/(?P<pk>[0-9]+)$',mahasiswaUpdateView.as_view(),name='update'),
+    re_path(r'^delete/(?P<pk>[0-9]+)$',mahasiswaDeleteView.as_view(),name='delete')
 ]

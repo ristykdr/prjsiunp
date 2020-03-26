@@ -7,8 +7,8 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nama</th>
                 <th>NPM</th>
+                <th>Nama</th>
                 <th>Tahun Masuk</th>
                 <th>Kelas</th>
                 <th>Ubah / Hapus</th>
@@ -16,11 +16,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for mhs in semua_mahasiswa %}
+            {% for mhs in object_list %}
             <tr>
                 <td>{{forloop.counter}}</td>
-                <td>{{mhs.nik}}</td>
                 <td>{{mhs.npm}}</td>
+                <td>{{mhs.nama}}</td>
                 <td>{{mhs.tahunMasuk}}</td>
                 <td>{{mhs.kelas}}</td>
                 <td>

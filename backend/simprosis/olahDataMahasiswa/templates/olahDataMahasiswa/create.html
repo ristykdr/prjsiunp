@@ -1,30 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-{% if formMahasiswa.errors %}
-    {% for field in formMahasiswa %}
-        {% for error in field.errors %}
-            <div class="alert alert-danger alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>{{field.label}} : </strong>{{ error|escape }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% for error in formMahasiswa.non_field_errors %}
-        <div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>{{field.label}} : </strong>{{ error|escape }}
-        </div>
-    {% endfor %}
-{% endif %}
+
     <a class="btn btn-outline-primary" href="#">Import Mahasiswa</a>
     <form method="post">
         {% csrf_token %}
-        {% for formMhs in formMahasiswa %}
-            <div class="form-group">
-                {{formMhs.label}}
-                {{formMhs}}
-            </div>
-        {% endfor %}
+        {{form}}
         <button class="btn btn-primary" type="submit">Simpan</button>
     </form>
 {% endblock content %}

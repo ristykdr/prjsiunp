@@ -6,32 +6,31 @@ class mahasiswaForm(forms.ModelForm):
     class Meta:
 
         model = mahasiswa
-        fields = {
-            'nik',
+        fields = [
             'npm',
             'tahunMasuk',
-            'kelas'
-        }
+            'kelas',
+
+            'noKTP',
+            'nama',
+            'alamat',
+            'tanggalLahir',
+            'jenisKelamin',
+            'agama'
+        ]
         labels = {
-            'nik':'Pilih user sebagai mahasiswa',
             'npm':'Nomor Induk/Pokok Mahasiswa',
             'tahunMasuk':'Tahun Masuk mahasiswa',
-            'kelas':'Kelas'
+            'kelas':'Kelas',
+
+            'noKTP':'Nomor KTP',
+            'nama':'Nama Lengkap',
+            'alamat':'Alamat KTP',
+            'tanggalLahir':'Tanggal Lahir',
+            'jenisKelamin':'Jenis Kelamin',
+            'agama':'Agama'
         }
         widgets = {
-            'nik':forms.Select(
-                attrs={
-                    'class':'form-control form-control-sm',
-                    'placeholder':'Pilih User'
-                }
-            ),
-            # 'nik':forms.ModelChoiceField(queryset=userProfiles.objects.exclude(id__in=dosen.objects.all().values_list('nik_id',flat=True))
-                # attrs={
-                #     # 'queryset':'userProfiles.objects.exclude(id__in=dosen.objects.all().values_list('nik_id',flat=True))',
-                #     'class':'form-control form-control-sm',
-                #     'placeholder':'Pilih User'
-                # }
-            # ),
             'npm':forms.TextInput(
                 attrs={
                     'class':'form-control form-control-sm',
@@ -48,7 +47,42 @@ class mahasiswaForm(forms.ModelForm):
             'kelas':forms.TextInput(
                 attrs={
                     'class':'form-control form-control-sm',
-                    'placeholder':'Masukkan kelas'
+                    'placeholder':'kelas : "A", "B", ...'
+                }
+            ),
+
+            'noKTP':forms.NumberInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Masukkan Nomor KTP'
+                }
+            ),
+            'nama':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Masukkan Nama Lengkap'
+                }
+            ),
+            'alamat':forms.TextInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'placeholder':'Masukkan alamat Sesuai KTP'
+                }
+            ),
+            'tanggalLahir':forms.DateInput(
+                attrs={
+                    'class':'form-control form-control-sm',
+                    'type':'date'
+                }
+            ),
+            'jenisKelamin':forms.Select(
+                attrs={
+                    'class':'form-control form-control-sm',
+                }
+            ),
+            'agama':forms.Select(
+                attrs={
+                    'class':'form-control form-control-sm',
                 }
             )
         }
