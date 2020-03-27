@@ -12,7 +12,7 @@ class mahasiswa(models.Model):
     #     on_delete=models.CASCADE, 
     #     unique=True,)
     npm = models.CharField(max_length=20,unique=True)
-    tahunMasuk = models.IntegerField(choices=listTahunMasuk)
+    tahunMasuk = models.IntegerField(choices=listTahunMasuk, blank=True, null=True)
     kelas = models.CharField(max_length=2, blank=True, null=True)
     
     list_agama = (

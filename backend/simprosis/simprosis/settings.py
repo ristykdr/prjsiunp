@@ -59,7 +59,9 @@ INSTALLED_APPS = [
     'rekapRPS',
     'subPokokBahasan',
     'tinymce',
-    'qr_code'
+    'qr_code',
+    'import_export',
+    # 'reports'
     
 ]
 
@@ -193,3 +195,6 @@ QR_CODE_URL_PROTECTION = {
     constants.SIGNING_SALT: 'my-signing-salt',  # Optional signing salt for URL token.
     constants.ALLOWS_EXTERNAL_REQUESTS_FOR_REGISTERED_USER: False   # Tells whether a registered user can request the QR code URLs from outside a site that uses this app. It can be a boolean value used for any user, or a callable that takes a user as parameter. Defaults to False (nobody can access the URL without the security token).
 }
+
+# import export 
+IMPORT_EXPORT_USE_TRANSACTIONS = True

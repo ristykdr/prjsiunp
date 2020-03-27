@@ -11,6 +11,9 @@ from django.views.generic import (
     CreateView
 )
 
+from tablib import Dataset
+from .resources import mahasiswaResource
+
 # Create your views here.
 
 
@@ -73,6 +76,27 @@ class mahasiswaDeleteView(DeleteView):
         return super().get_context_data(*args, **kwargs)
     def get_success_url(self):
         return reverse_lazy('olahDataMahasiswa:index')
+
+
+
+def importDataMhs(request):
+    if request.method=='POST':
+        mahasiswa_resource = mahasiswaResource()
+        dataset = Dataset()
+        data_mhs_import = request.FILES['fileImport']
+
+        imported_data = dataset.load(data_mhs_import.read().decode('utf-8'),format='csv')
+        result = mahasiswa_resource.import_data(dataset, dry_run=True)
+
+        print(result.has_errors())
+        print(imported_data)
+
+        # if not result.has_errors():
+        mahasiswa_resource.import_data(dataset, dry_run=False)
+    return render (request,'olahDataMahasiswa/importmhs.html')
+
+
+
 
 
 def index (request) :
