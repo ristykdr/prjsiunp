@@ -10,9 +10,11 @@ from django.views.generic import (
     UpdateView,
     CreateView
 )
+from django.core.exceptions import ObjectDoesNotExist
+import openpyxl
 
-from tablib import Dataset
-from .resources import mahasiswaResource
+# from tablib import Dataset
+# from .resources import mahasiswaResource
 
 # Create your views here.
 
@@ -51,6 +53,7 @@ class mahasiswaListView(ListView):
     model = mahasiswa
     template_name = 'olahDataMahasiswa/index.html'
     ordering =['npm']
+    paginate_by = 10
     extra_context = {
         'appGroup':'Operasional',
         'appName': 'Olah Data Mahasiswa',
@@ -79,22 +82,78 @@ class mahasiswaDeleteView(DeleteView):
 
 
 
-def importDataMhs(request):
-    if request.method=='POST':
-        mahasiswa_resource = mahasiswaResource()
-        dataset = Dataset()
+# def importDataMhs(request):
+#     if request.method=='POST':
+#         mahasiswa_resource = mahasiswaResource()
+#         dataset = Dataset()
+#         data_mhs_import = request.FILES['fileImport']
+
+#         imported_data = dataset.load(data_mhs_import.read().decode('utf-8'),format='csv')
+#         result = mahasiswa_resource.import_data(dataset, dry_run=True)
+
+#         print(result.has_errors())
+#         print(imported_data)
+
+#         if not result.has_errors():
+#             mahasiswa_resource.import_data(dataset, dry_run=False)
+#     context = {
+#         'appGroup':'Operasional',
+#         'appName': 'Import Data Mahasiswa',
+#         }
+#     return render (request,'olahDataMahasiswa/importmhs.html',context)
+
+
+def importDataMhs (request):
+    if request.method=='GET':
+        context = {
+            'appGroup': 'Operasional',
+            'appName': 'Import Data Mahasiswa',
+        }
+        return render (request,'olahDataMahasiswa/importmhs.html',context)
+    
+    else:
         data_mhs_import = request.FILES['fileImport']
+        wb = openpyxl.load_workbook(data_mhs_import)
+        # mendapatkan nama sheet
+        worksheet = wb['Sheet1']
+        print(worksheet)
 
-        imported_data = dataset.load(data_mhs_import.read().decode('utf-8'),format='csv')
-        result = mahasiswa_resource.import_data(dataset, dry_run=True)
+        exel_data = list()
+        dataSudahAda = list()
+        # perulangan untuk baca row
+        for row in worksheet.iter_rows(min_row=2, max_col=2):
+            row_data = list()
+            # perulangan untuk baca kolom
+            for cell in row:
+                isi = str(cell.value)
+                row_data.append(isi.replace("'",""))
+            # cek, create data di sini
+            dataNpm = row_data[0]
+            dataNama = row_data[1]
+            try:
+                mahasiswa.objects.get(npm=dataNpm)
+                dataSudahAda.append(row_data)
+                # pass
+            except ObjectDoesNotExist:
+                mahasiswa.objects.create(npm=dataNpm, nama=dataNama)
+                exel_data.append(row_data)
 
-        print(result.has_errors())
-        print(imported_data)
-
-        # if not result.has_errors():
-        mahasiswa_resource.import_data(dataset, dry_run=False)
-    return render (request,'olahDataMahasiswa/importmhs.html')
-
+            # print(row_data)
+            # print('=======')
+            # exel_data.append(row_data)
+            
+        context = {
+            'appGroup': 'Operasional',
+            'appName': 'Import Data Mahasiswa',
+            
+        }
+        context['exel_data']=exel_data
+        context['dataSudahAda']=dataSudahAda
+        # print(exel_data)
+        # print('----------------------------')
+        # print(dataSudahAda)
+        # print(context)
+        return render (request,'olahDataMahasiswa/importmhs.html',context)
 
 
 

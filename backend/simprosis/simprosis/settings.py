@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'subPokokBahasan',
     'tinymce',
     'qr_code',
-    'import_export',
+    # 'import_export',
     # 'reports'
     
 ]
@@ -197,4 +197,4 @@ QR_CODE_URL_PROTECTION = {
 }
 
 # import export 
-IMPORT_EXPORT_USE_TRANSACTIONS = True
+# IMPORT_EXPORT_USE_TRANSACTIONS = True
