@@ -104,11 +104,12 @@ class mahasiswaDeleteView(DeleteView):
 
 
 def importDataMhs (request):
-    if request.method=='GET':
-        context = {
+    context = {
             'appGroup': 'Operasional',
             'appName': 'Import Data Mahasiswa',
         }
+    if request.method=='GET':
+        
         return render (request,'olahDataMahasiswa/importmhs.html',context)
     
     else:

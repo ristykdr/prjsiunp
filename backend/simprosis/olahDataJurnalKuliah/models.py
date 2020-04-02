@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from olahDataMatakuliah.models import matakuliah
 from olahDataDosen.models import dosen
+from olahDataMahasiswa.models import mahasiswa
 from datetime import datetime
 
 # Create your models here.
@@ -60,4 +61,18 @@ class detilJurnalKuliah(models.Model):
 
     def get_absolute_url(self):
         return reverse('subPokokBahasan:detiljurnalkuliah', kwargs={"pk": self.jurnal.id})
-    
+
+class pesertaKuliah(models.Model): #krs
+    # TODO: Define fields here
+    jurnal = models.ForeignKey(jurnalKuliah, on_delete=models.CASCADE)
+    peserta = models.ForeignKey(mahasiswa, on_delete=models.CASCADE)
+
+    class Meta:
+        """Meta definition for pesertaKuliah."""
+
+        verbose_name = 'pesertaKuliah'
+        verbose_name_plural = 'pesertaKuliah'
+
+    def __str__(self):
+        """Unicode representation of pesertaKuliah."""
+        return "{} - {}".format(self.jurnal, self.peserta.nama)

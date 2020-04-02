@@ -9,7 +9,7 @@ from django.views.generic import (
     UpdateView
 )
 
-from .models import presensi
+# from .models import presensi
 
 # Create your views here.
 
