@@ -6,18 +6,18 @@
         <div class="card-body">
             <table class="table">
                 <tr>
-                    <td>Matakuliah</td>
+                    <td><b>Matakuliah</b> </td>
                     <td>{{object.mk}}</td>
-                    <td>Kelas</td>
+                    <td><b>Kelas</b></td>
                     <td>{{object.kelas}}</td>
-                    <td>Jam</td>
+                    <td><b>Jam</b></td>
                     <td>{{dataKuliah.jamMulai}} - {{dataKuliah.jamSelesai}}</td>
                     
                 </tr>
                 <tr>
-                    <td>Dosen</td>
+                    <td><b>Dosen</b></td>
                     <td>{{object.dosenPengajar}}</td>
-                    <td>Materi</td>
+                    <td><b>Materi</b></td>
                     <td colspan="3">{{dataKuliah.materi|truncatewords:20}}</td>
                 </tr>
             </table>
@@ -29,7 +29,7 @@
     <div class="col-sm-7">
         <div class="card border-primary">
             <div class="card-header">
-                Mahasiswa Hadir (Jumlah)
+                Jumlah Mahasiswa : <b>{{pesertaKuliah|length}}</b>. Hadir : <b>{{jumlahKehadiran}}</b>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

@@ -47,7 +47,7 @@ class dosen(models.Model):
         ordering =['-nik']
       
     def __str__(self):
-        return "{} - {}".format(self.nidn, self.nik.nama)
+        return "{}".format(self.nik.nama)
 
     # def get_absolute_url(self):
     #     return reverse("dosen_detail", kwargs={"pk": self.pk})

@@ -219,6 +219,7 @@ class presensiDetailView(DetailView):
         pesertaKuliah = presensi.objects.filter(
             jurnalPerkuliahan_id=self.kwargs['id_dtJurnal']
         ).order_by(
+            '-presensi',
             '-presenceDate'
         ).values(
             'npm__npm',
@@ -228,8 +229,15 @@ class presensiDetailView(DetailView):
         )
         self.kwargs.update({'pesertaKuliah':pesertaKuliah})
 
+        jumlahKehadiran = presensi.objects.filter(
+            jurnalPerkuliahan_id=self.kwargs['id_dtJurnal'],
+            presensi=True
+        ).count()
+        self.kwargs.update({'jumlahKehadiran':jumlahKehadiran})
+
         kwargs = self.kwargs
-        print(kwargs)
+        # print(kwargs)
+        # print(kwargs['jumlahKehadiran'])
         return super().get_context_data(*args, **kwargs)
 
 
@@ -310,11 +318,19 @@ def buatPresensi(request, idJurnal,id_dtJurnal):
         ).filter(jurnal_id=idJurnal)
 
     for mhs in mhsPeserta:
-        # masukkan ke tabel presensi
-        presensi.objects.create(
-            jurnalPerkuliahan_id=id_dtJurnal,
-            npm_id=mhs
-        )
+        # ek di tabel presensi, sudah ada apa belum, jika sudah maka pass, 
+        try:
+            presensi.objects.get(
+                jurnalPerkuliahan_id=id_dtJurnal,
+                npm_id=mhs
+            )
+            # pass
+        except ObjectDoesNotExist:
+            # jika belum masukkan ke tabel presensi 
+            presensi.objects.create(
+                jurnalPerkuliahan_id=id_dtJurnal,
+                npm_id=mhs
+            )
         # print('ini mhs')
         # print(mhs)
 

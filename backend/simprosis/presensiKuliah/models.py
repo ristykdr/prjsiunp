@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+from django.core.validators import MaxValueValidator, MinValueValidator
 # from olahDataMatakuliah.models import matakuliah
 from olahDataMahasiswa.models import mahasiswa
 from olahDataJurnalKuliah.models import detilJurnalKuliah
@@ -13,7 +15,14 @@ class presensi(models.Model):
     npm = models.ForeignKey(mahasiswa, on_delete=models.CASCADE)
     presensi = models.BooleanField(default=False)
     importDate = models.DateTimeField(auto_now_add=True)
-    presenceDate =models.DateTimeField(auto_now=True)
+    presenceDate =models.DateTimeField(blank=True, null=True)
+    nilai = models.PositiveIntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(100)
+        ]
+    )
 
     class Meta:
         """Meta definition for presensi."""
@@ -23,6 +32,12 @@ class presensi(models.Model):
 
     def __str__(self):
         return "{}-{}".format(self.jurnalPerkuliahan, self.npm)
+    
+    # def get_absolute_url(self):
+    #     return reverse('olahDataNilai:nilaiperpertemuan', kwargs={
+    #         "pk": self.jurnalPerkuliahan.id.id,
+    #         "id_dtJurnal":self.jurnalPerkuliahan.id
+    #         })
     
     # def save(self):
     #     pass
