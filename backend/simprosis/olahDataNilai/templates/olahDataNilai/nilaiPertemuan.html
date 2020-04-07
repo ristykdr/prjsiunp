@@ -27,8 +27,8 @@
 </div>
 <div class="card border-primary">
     <div class="card-header">
-        Jumlah Mahasiswa : <b>{{pesertaKuliah|length}}</b>. Hadir : <b>{{jumlahKehadiran}}</b>
-    </div>
+        Jumlah Mahasiswa : <b>{{pesertaKuliah|length}}</b>. Hadir : <b>{{jumlahKehadiran}}</b> 
+        <a class="btn btn-primary float-right" href="{% url 'olahDataNilai:exportNilaiHarian' dataKuliah.id %}">Download xlsx</a> 
     <div class="card-body">
         <div class="table-responsive">
             <table class="table">

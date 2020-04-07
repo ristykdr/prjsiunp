@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 from django.views.generic import(
     CreateView, DetailView, ListView, 
     DeleteView, UpdateView
@@ -10,6 +11,7 @@ from olahDataMatakuliah.models import matakuliah
 from olahDataRPS.models import rps
 from presensiKuliah.models import presensi
 from .forms import updateNilaiPresensiForm
+from openpyxl import Workbook
 
 # Create your views here.
 def index(request):
@@ -141,3 +143,64 @@ class nilaiUpdateView(UpdateView):
             "pk": jurnalPerkuliahan.jurnal_id,
             "id_dtJurnal":jurnalPerkuliahan.id
             })
+
+def exportNilaiHarian(request, jurnalPerkuliahan):
+    context = {
+            'appGroup':'Olah Data Nilai',
+            'appName':'Export/Import Nilai per pertemuan',
+            'jurnalPerkuliahan':jurnalPerkuliahan
+        }
+    if request.method=='GET':
+        # Download file excel per pertemuan
+        dataMhs = presensi.objects.filter(
+            jurnalPerkuliahan_id=jurnalPerkuliahan
+            ).values(
+                'id',
+                'npm__npm',
+                'npm__nama',
+                'presensi',
+                'nilai'
+            )
+        # pertemuan = 
+        response = HttpResponse(
+            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        )
+
+        response['Content-Disposition']='attachment; filename=dataNilaiHarian.xlsx'
+        wb = Workbook()
+        ws = wb.active
+        ws.tittle='NilaiHarian'
+
+        kolom = [
+            'ID',
+            'NPM',
+            'Nama',
+            'Hadir',
+            'Nilai'
+        ]
+
+        row_num = 1
+
+        for col_num, column_tittle in enumerate(kolom, 1):
+            cell=ws.cell(row = row_num,column = col_num)
+            cell.value = column_tittle
+
+        for mhs in dataMhs:
+            row_num+=1
+            # Definisi data untuk setiap baris 
+            row = [
+                mhs['id'],
+                mhs['npm__npm'],
+                mhs['npm__nama'],
+                mhs['presensi'],
+                mhs['nilai']
+            ]
+            # masukkan data ke cell
+            for col_num, cell_value in enumerate(row,1):
+                cell = ws.cell(row=row_num, column=col_num)
+                cell.value=cell_value
+        
+        wb.save(response)
+        return response
+
+        # return render(request,'olahDataNilai/importNilaiPerPertemuan.html',context)
