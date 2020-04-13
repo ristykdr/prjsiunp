@@ -69,7 +69,7 @@
                 </tbody>
             </table>
         </div>
-        <a class="btn btn-primary btn-block" href="#">Rekap dan isi menggunakan Excel</a>
+        <a class="btn btn-primary btn-block" href="{% url 'olahDataNilai:importNilaiHarian' object.pk dataKuliah.id %}">Import Perubahan Nilai Harian (xlsx)</a>
     </div>
     
 </div>
