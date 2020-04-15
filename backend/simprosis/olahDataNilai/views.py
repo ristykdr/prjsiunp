@@ -8,7 +8,7 @@ from django.views.generic import(
 )
 from olahDataJurnalKuliah.models import jurnalKuliah, detilJurnalKuliah, pesertaKuliah
 from olahDataMatakuliah.models import matakuliah
-from olahDataRPS.models import rps
+from olahDataRPS.models import rps, detilRPS
 from presensiKuliah.models import presensi
 from .forms import updateNilaiPresensiForm
 import openpyxl
@@ -250,7 +250,7 @@ class rekapTotalDetailView(DetailView):
     extra_context ={
         'appGroup':'Dosen',
         'appName':'Rekap Nilai Akhir Matakuliah', 
-    }
+    }  
 
     def get_context_data(self, *args, **kwargs):
         self.kwargs.update(self.extra_context)
@@ -265,15 +265,6 @@ class rekapTotalDetailView(DetailView):
         jmlPertemuan = detilJurnal.count()
         self.kwargs.update({'jmlPertemuan':jmlPertemuan})
 
-        # peserta kuliah
-        pstKuliah = pesertaKuliah.objects.filter(
-            jurnal_id=self.kwargs['pk']
-        ).values(
-            'peserta__npm',
-            'peserta__nama'
-        )
-        self.kwargs.update({'pstKuliah':pstKuliah})
-
         # ambil id_rps yang memiliki kode matakuliah 
         # jika ada id_rps maka
         try:
@@ -284,10 +275,70 @@ class rekapTotalDetailView(DetailView):
         # id_rps=rps.objects.values_list('id',flat=True).get(kodemk_id=self.object.mk_id)
         self.kwargs.update({'id_rps':id_rps})
 
+
+
+        # rekap daftar nilai ke dalam list
+        daftarMhs = pesertaKuliah.objects.filter(
+            jurnal_id=self.kwargs['pk']
+        ).values(
+            'peserta__npm',
+            'peserta__nama'
+        )
+        baris = list()
+        for mhs in daftarMhs:
+            dataBaris = list()
+            dataBaris.append(mhs['peserta__npm'])
+            dataBaris.append(mhs['peserta__nama'])
+            # ambil pertemuan, loop pertemuan pada jurnal tersebut
+            
+            nilaixBobot = list() #list untuk menampung nilai x bobot
+            for pert in detilJurnal:
+                # cari nilai setiap pertemuan
+                nilaiMhs=presensi.objects.values(
+                    'nilai'
+                ).get(
+                    npm__npm=mhs['peserta__npm'],
+                    jurnalPerkuliahan__pertemuan=pert.pertemuan
+                )
+
+                dataBaris.append(nilaiMhs['nilai'])
+                
+                # dan ambil bobot nilai per pertemuan dalam detil RPS berdasar id_rps
+                bobotNilai=detilRPS.objects.values(
+                    'bobotPenilaian'
+                ).get(
+                    idRps_id = id_rps,
+                    pertemuan = pert.pertemuan
+                )
+
+                nilaiTerbobot = (bobotNilai['bobotPenilaian']/100)*nilaiMhs['nilai']
+                nilaixBobot.append(nilaiTerbobot)
+            
+            nilaiAkhir = sum(nilaixBobot)
+            dataBaris.append(nilaiAkhir)
+
+            # tampung ke dalam satu baris
+            baris.append(dataBaris)
+
+        # masukkan ke dalam extra_context
+        self.extra_context['baris']=baris 
+        self.kwargs.update(self.extra_context) 
+
+
+
+        # peserta kuliah
+        pstKuliah = pesertaKuliah.objects.filter(
+            jurnal_id=self.kwargs['pk']
+        ).values(
+            'peserta__npm',
+            'peserta__nama'
+        )
+        self.kwargs.update({'pstKuliah':pstKuliah})     
+
         kwargs = self.kwargs
-        print(kwargs)
-        print('----------')
-        print(kwargs['matkul'])
-        print('----------')
-        print(self.object.mk_id)
+        # print(kwargs)
+        # print('----------')
+        # print(kwargs['matkul'])
+        # print('----------')
+        # print(self.object.mk_id)
         return super().get_context_data(*args, **kwargs)

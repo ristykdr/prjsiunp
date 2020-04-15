@@ -44,10 +44,11 @@
                         {% endfor %}
                 </thead>
                 <tbody>
-                    {% for peserta in pstKuliah %}
+                    {% for dataBaris in baris %}
                         <tr>
-                            <td>{{peserta.peserta__npm}}</td>
-                            <td>{{peserta.peserta__nama}}</td>
+                            {% for isiBaris in dataBaris %}
+                                <td>{{isiBaris}}</td>
+                            {% endfor %}
                         </tr>
                     {% empty %}
                         <tr>
