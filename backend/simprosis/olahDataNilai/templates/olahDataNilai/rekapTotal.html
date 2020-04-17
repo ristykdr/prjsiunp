@@ -60,7 +60,7 @@
                 </tbody>
             </table>
         </div>
-        <a class="btn btn-primary btn-block" href="#">Download xlsx</a>
+        <a class="btn btn-primary btn-block" href="{% url 'olahDataNilai:exportNilaiAkhir' object.pk %}">Download xlsx</a>
             
     </div>
     <a class="btn btn-outline-primary btn-block" href="{% url 'olahDataNilai:index' %}">Kembali ke daftar jurnal</a>

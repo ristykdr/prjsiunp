@@ -8,6 +8,7 @@ from . views import (
     exportNilaiHarian,
     importNilaiHarian,
     rekapTotalDetailView,
+    exportNilaiAkhir
 )
 
 app_name='olahDataNilai'
@@ -20,4 +21,5 @@ urlpatterns = [
     re_path(r'^nilaiUpdateView/(?P<idJurnal>[0-9]+)/(?P<id_dtJurnal>[0-9]+)/(?P<pk>[0-9]+)$',nilaiUpdateView.as_view(),name='nilaiUpdateView'),
     re_path(r'^exportNilaiHarian/(?P<jurnalPerkuliahan>[0-9]+)$',exportNilaiHarian,name='exportNilaiHarian'),
     re_path(r'^importNilaiHarian/(?P<idJurnal>[0-9]+)/(?P<id_dtJurnal>[0-9]+)$',importNilaiHarian,name='importNilaiHarian'),
+    re_path(r'^exportNilaiAkhir/(?P<idJurnal>[0-9]+)$',exportNilaiAkhir,name='exportNilaiAkhir'),
 ]

@@ -283,7 +283,7 @@ class rekapTotalDetailView(DetailView):
         ).values(
             'peserta__npm',
             'peserta__nama'
-        )
+        ).order_by('-peserta__npm')
         baris = list()
         for mhs in daftarMhs:
             dataBaris = list()
@@ -342,3 +342,115 @@ class rekapTotalDetailView(DetailView):
         # print('----------')
         # print(self.object.mk_id)
         return super().get_context_data(*args, **kwargs)
+
+def exportNilaiAkhir(request,idJurnal):
+    idMk = jurnalKuliah.objects.values_list('mk_id', flat=True).get(id=idJurnal)
+    matkul = matakuliah.objects.values('nama').get(id=idMk)
+    detilJurnal=detilJurnalKuliah.objects.filter(jurnal_id=idJurnal)
+    kelas = jurnalKuliah.objects.values_list('kelas',flat=True).get(id=idJurnal)
+    # ambil id_rps yang memiliki kode matakuliah 
+    # jika ada id_rps maka
+    try:
+        id_rps=rps.objects.values_list('id',flat=True).get(kodemk_id=idMk)
+    # except id_rps.DoesNotExist:
+    except ObjectDoesNotExist:
+        id_rps = None
+    
+
+    # rekap daftar nilai ke dalam list
+    daftarMhs = pesertaKuliah.objects.filter(
+        jurnal_id=idJurnal
+    ).values(
+        'peserta__npm',
+        'peserta__nama'
+    ).order_by('-peserta__npm')
+    baris = list()
+    for mhs in daftarMhs:
+        dataBaris = list()
+        dataBaris.append(mhs['peserta__npm'])
+        dataBaris.append(mhs['peserta__nama'])
+        # ambil pertemuan, loop pertemuan pada jurnal tersebut
+        
+        nilaixBobot = list() #list untuk menampung nilai x bobot
+        for pert in detilJurnal:
+            # cari nilai setiap pertemuan
+            nilaiMhs=presensi.objects.values(
+                'nilai'
+            ).get(
+                npm__npm=mhs['peserta__npm'],
+                jurnalPerkuliahan__pertemuan=pert.pertemuan
+            )
+
+            dataBaris.append(nilaiMhs['nilai'])
+            
+            # dan ambil bobot nilai per pertemuan dalam detil RPS berdasar id_rps
+            bobotNilai=detilRPS.objects.values(
+                'bobotPenilaian'
+            ).get(
+                idRps_id = id_rps,
+                pertemuan = pert.pertemuan
+            )
+
+            nilaiTerbobot = (bobotNilai['bobotPenilaian']/100)*nilaiMhs['nilai']
+            nilaixBobot.append(nilaiTerbobot)
+        
+        nilaiAkhir = sum(nilaixBobot)
+        dataBaris.append(nilaiAkhir)
+
+        # tampung ke dalam satu baris
+        baris.append(dataBaris)
+    
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    )
+    response['Content-Disposition']='attachment; filename=NilaiTotal-{mk}-{kls}.xlsx'.format(mk=matkul['nama'],kls=kelas)
+    wb = Workbook()
+    ws = wb.active
+    ws.tittle='NilaiTotal'
+    kolom = [
+        'NPM',
+        'NAMA',
+        # 'N1',
+        # 'N2',
+        # 'N3',
+        # 'NILAI AKHIR'
+    ]
+
+    # menambak kolom nilai pada header
+    for itemPertemuan in detilJurnal:
+        n = itemPertemuan.pertemuan
+        kolom.append('N'+str(n))
+
+    kolom.append('Nilai Akhir')
+
+    row_num = 1
+
+    # membuat header excel
+    for col_num, column_tittle in enumerate(kolom,1):
+        cell = ws.cell(row = row_num, column = col_num)
+        cell.value = column_tittle
+
+    for dataNilai in baris:
+        row_num+=1
+        ws.append(dataNilai)
+        
+    
+    # for mhs in dataMhs:
+    #     row_num+=1
+    #     # Definisi data untuk setiap baris 
+    #     row = [
+    #         mhs['id'],
+    #         mhs['npm__npm'],
+    #         mhs['npm__nama'],
+    #         mhs['presensi'],
+    #         mhs['nilai']
+    #     ]
+    #     # masukkan data ke cell
+    #     for col_num, cell_value in enumerate(row,1):
+    #         cell = ws.cell(row=row_num, column=col_num)
+    #         cell.value=cell_value
+    
+
+    wb.save(response)
+
+    return response
