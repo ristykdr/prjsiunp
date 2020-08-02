@@ -410,10 +410,6 @@ def exportNilaiAkhir(request,idJurnal):
     kolom = [
         'NPM',
         'NAMA',
-        # 'N1',
-        # 'N2',
-        # 'N3',
-        # 'NILAI AKHIR'
     ]
 
     # menambak kolom nilai pada header
@@ -431,26 +427,8 @@ def exportNilaiAkhir(request,idJurnal):
         cell.value = column_tittle
 
     for dataNilai in baris:
-        row_num+=1
         ws.append(dataNilai)
         
-    
-    # for mhs in dataMhs:
-    #     row_num+=1
-    #     # Definisi data untuk setiap baris 
-    #     row = [
-    #         mhs['id'],
-    #         mhs['npm__npm'],
-    #         mhs['npm__nama'],
-    #         mhs['presensi'],
-    #         mhs['nilai']
-    #     ]
-    #     # masukkan data ke cell
-    #     for col_num, cell_value in enumerate(row,1):
-    #         cell = ws.cell(row=row_num, column=col_num)
-    #         cell.value=cell_value
-    
-
     wb.save(response)
 
     return response

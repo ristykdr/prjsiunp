@@ -11,7 +11,7 @@
  Target Server Version : 100121
  File Encoding         : 65001
 
- Date: 09/04/2020 14:14:38
+ Date: 26/04/2020 12:08:31
 */
 
 SET NAMES utf8mb4;
@@ -171,7 +171,7 @@ CREATE TABLE `auth_user`  (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES (1, 'pbkdf2_sha256$150000$PW7L9wZAwkd9$npMPrO8HKdmoMWBpQeLQABl3zYFsYJcfpcWGMJlolLQ=', '2020-04-01 14:47:19.826555', 1, 'developer', 'Aidina', 'Ristyawan', 'ristykdr@gmail.com', 1, 1, '2020-01-25 06:48:34.478642');
+INSERT INTO `auth_user` VALUES (1, 'pbkdf2_sha256$150000$PW7L9wZAwkd9$npMPrO8HKdmoMWBpQeLQABl3zYFsYJcfpcWGMJlolLQ=', '2020-04-15 14:52:40.720365', 1, 'developer', 'Aidina', 'Ristyawan', 'ristykdr@gmail.com', 1, 1, '2020-01-25 06:48:34.478642');
 INSERT INTO `auth_user` VALUES (9, 'pbkdf2_sha256$150000$qUnyC7xVevXM$vNr247as5dposw0fLFj5JMGYG+AQXCjxiCtAIGLYHOA=', '2020-02-27 07:56:56.701681', 0, 'paijah', 'paijaha', 'sumarni', 'paijah@gmail.com', 1, 1, '2020-02-20 10:39:52.000000');
 INSERT INTO `auth_user` VALUES (11, 'pbkdf2_sha256$150000$5zUNmU3z4TEV$0Ua/3TcQmqcmBOtURYbOib61T8gKn1N3AoXlWC/XGu0=', '2020-03-04 03:12:35.620845', 1, 'admin', '', '', '', 1, 1, '2020-03-04 03:11:12.000000');
 
@@ -279,7 +279,7 @@ CREATE TABLE `django_admin_log`  (
   INDEX `django_admin_log_user_id_c564eba6_fk_auth_user_id`(`user_id`) USING BTREE,
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 623 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 625 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of django_admin_log
@@ -906,6 +906,8 @@ INSERT INTO `django_admin_log` VALUES (619, '2020-04-05 06:50:57.314869', '125',
 INSERT INTO `django_admin_log` VALUES (620, '2020-04-05 06:50:57.317317', '124', '2019/2020-SIM3707 - Data Mining 1-17.1.03.03.0005 - SUCI DEWANTI', 3, '', 19, 1);
 INSERT INTO `django_admin_log` VALUES (621, '2020-04-05 06:53:59.815744', '198', '2019/2020-SIM3707 - Data Mining 1-17.1.03.03.0003 - DIMAS ABIMANYU', 2, '[{\"changed\": {\"fields\": [\"presensi\"]}}]', 19, 1);
 INSERT INTO `django_admin_log` VALUES (622, '2020-04-05 06:54:08.395572', '205', '2019/2020-SIM3707 - Data Mining 1-17.1.03.03.0011 - AZIS NURDIANSYAH', 2, '[{\"changed\": {\"fields\": [\"presensi\"]}}]', 19, 1);
+INSERT INTO `django_admin_log` VALUES (623, '2020-04-11 08:12:55.499036', '241', '2019/2020-SIM3707 - Data Mining 2-17.1.03.03.0017 - SINGGIH ONGKY PRATOMO', 2, '[{\"changed\": {\"fields\": [\"presensi\"]}}]', 19, 1);
+INSERT INTO `django_admin_log` VALUES (624, '2020-04-11 08:13:05.116623', '230', '2019/2020-SIM3707 - Data Mining 2-16.1.03.03.0017 - GERY HENDRI VEENTOAR', 2, '[{\"changed\": {\"fields\": [\"presensi\"]}}]', 19, 1);
 
 -- ----------------------------
 -- Table structure for django_content_type
@@ -1073,6 +1075,7 @@ CREATE TABLE `django_session`  (
 -- ----------------------------
 -- Records of django_session
 -- ----------------------------
+INSERT INTO `django_session` VALUES ('abpa93vchfxwseqlb4xqlj4dovg7f50y', 'MzczZGIxOTkyOTU4ZjM5OTZmZjRjNDVkMWEyYTNjYWUxZjkxMGFjZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlODU2ZTg0YTM1NWVhZjZhNzYyN2VmZGZjN2EyNTkxNGUyZjA4MWNhIn0=', '2020-04-29 14:52:40.727361');
 INSERT INTO `django_session` VALUES ('jtp3oqt4y88ekdk732t6q2hbtn5vmtew', 'MzczZGIxOTkyOTU4ZjM5OTZmZjRjNDVkMWEyYTNjYWUxZjkxMGFjZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlODU2ZTg0YTM1NWVhZjZhNzYyN2VmZGZjN2EyNTkxNGUyZjA4MWNhIn0=', '2020-04-01 09:14:07.287031');
 INSERT INTO `django_session` VALUES ('mcxlm6ykn6t8f310sb1p9ofxm6rrtgr1', 'MzczZGIxOTkyOTU4ZjM5OTZmZjRjNDVkMWEyYTNjYWUxZjkxMGFjZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlODU2ZTg0YTM1NWVhZjZhNzYyN2VmZGZjN2EyNTkxNGUyZjA4MWNhIn0=', '2020-04-15 14:47:19.832629');
 INSERT INTO `django_session` VALUES ('yn091nbatqv6umkyuqjcpimuip70fnhd', 'MzczZGIxOTkyOTU4ZjM5OTZmZjRjNDVkMWEyYTNjYWUxZjkxMGFjZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlODU2ZTg0YTM1NWVhZjZhNzYyN2VmZGZjN2EyNTkxNGUyZjA4MWNhIn0=', '2020-03-18 03:46:38.970552');
@@ -1115,7 +1118,7 @@ CREATE TABLE `olahdatajurnalkuliah_detiljurnalkuliah`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `olahDataJurnalKuliah_jurnal_id_78cb0616_fk_olahDataJ`(`jurnal_id`) USING BTREE,
   CONSTRAINT `olahDataJurnalKuliah_jurnal_id_78cb0616_fk_olahDataJ` FOREIGN KEY (`jurnal_id`) REFERENCES `olahdatajurnalkuliah_jurnalkuliah` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of olahdatajurnalkuliah_detiljurnalkuliah
@@ -1125,6 +1128,7 @@ INSERT INTO `olahdatajurnalkuliah_detiljurnalkuliah` VALUES (15, 1, '2020-03-20'
 INSERT INTO `olahdatajurnalkuliah_detiljurnalkuliah` VALUES (16, 2, '2020-03-27', '09:00:00.000000', '11:00:00.000000', 'Materi pembelajaran logika dan algoritma', 'metode pembelajaran logika dan algoritma', 8);
 INSERT INTO `olahdatajurnalkuliah_detiljurnalkuliah` VALUES (17, 3, '2020-04-02', '08:00:00.000000', '09:00:00.000000', 'Materi pembelajaran logika dan algoritma', 'metode pembelajaran logika dan algoritma', 8);
 INSERT INTO `olahdatajurnalkuliah_detiljurnalkuliah` VALUES (18, 2, '2020-04-03', '08:00:00.000000', '10:00:00.000000', 'Preprocessing', 'Ceramah Diskusi dan tugas mandiri', 9);
+INSERT INTO `olahdatajurnalkuliah_detiljurnalkuliah` VALUES (19, 3, '2020-04-13', '08:00:00.000000', '09:00:00.000000', 'Materi Pembelajaran 3', 'Metode Pembelajaran 3', 9);
 
 -- ----------------------------
 -- Table structure for olahdatajurnalkuliah_jurnalkuliah
@@ -1308,7 +1312,7 @@ CREATE TABLE `olahdatarps_detilrps`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `olahDataRPS_detilrps_idRps_id_aaad56b1_fk_olahDataRPS_rps_id`(`idRps_id`) USING BTREE,
   CONSTRAINT `olahDataRPS_detilrps_idRps_id_aaad56b1_fk_olahDataRPS_rps_id` FOREIGN KEY (`idRps_id`) REFERENCES `olahdatarps_rps` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of olahdatarps_detilrps
@@ -1319,6 +1323,9 @@ INSERT INTO `olahdatarps_detilrps` VALUES (9, 'kemampuan logika dan algoritma', 
 INSERT INTO `olahdatarps_detilrps` VALUES (10, 'kemampuan logika dan algoritma', 'indikator penilaian', 'metode pembelajaran logika dan algoritma', 'teknik penilaian', 'kriteria penilaian', 10, 2, 'Materi pembelajaran logika dan algoritma', 'Pengalaman Belajar Online logika dan algoritma', 'pengalaman Belajar Online Asinkron', 'Pengalaman Belajar Online Sinkron', 4);
 INSERT INTO `olahdatarps_detilrps` VALUES (11, 'kemampuan logika dan algoritma', 'indikator penilaian', 'metode pembelajaran logika dan algoritma', 'teknik penilaian', 'kriteria penilaian', 10, 2, 'Materi pembelajaran logika dan algoritma', 'Pengalaman Belajar Online logika dan algoritma', 'pengalaman Belajar Online Asinkron', 'Pengalaman Belajar Online Sinkron', 5);
 INSERT INTO `olahdatarps_detilrps` VALUES (12, 'kemampuan logika dan algoritma', 'indikator penilaian', 'metode pembelajaran logika dan algoritma', 'teknik penilaian', 'kriteria penilaian', 10, 2, 'Materi pembelajaran logika dan algoritma', 'Pengalaman Belajar Online logika dan algoritma', 'pengalaman Belajar Online Asinkron', 'Pengalaman Belajar Online Sinkron', 6);
+INSERT INTO `olahdatarps_detilrps` VALUES (13, 'kemampuan 1', 'indikator penilaian', 'metode belajar 1', 'teknik penilaian', 'kriteria penilaian', 30, 3, 'materi pembelajaran 1`', 'pengalaman belajar offline', 'Pengalaman Belajar Online Asinkron', 'Pengalaman Belajar Online Sinkron', 1);
+INSERT INTO `olahdatarps_detilrps` VALUES (14, 'Kemampuan', 'indikator penilaian', 'Metode Pembelajaran', 'teknik penilaian', 'kriteria penilaian', 30, 3, 'Materi Pembelajaran', 'Pengalaman Belajar Offline', 'Pengalaman Belajar Online Asinkron', 'Pengalaman Belajar Online Sinkron', 2);
+INSERT INTO `olahdatarps_detilrps` VALUES (15, 'Kemampuan 3', 'indikator penilaian', 'Metode Pembelajaran 3', 'teknik penilaian', 'kriteria penilaian', 40, 3, 'Materi Pembelajaran 3', 'Pengalaman Belajar Offline', 'Pengalaman Belajar Online Asinkron', 'Pengalaman Belajar Online Sinkron', 3);
 
 -- ----------------------------
 -- Table structure for olahdatarps_pustaka
@@ -1406,14 +1413,14 @@ CREATE TABLE `presensikuliah_presensi`  (
   INDEX `presensiKuliah_prese_jurnalPerkuliahan_id_a5bd4d88_fk_olahDataJ`(`jurnalPerkuliahan_id`) USING BTREE,
   CONSTRAINT `presensiKuliah_prese_jurnalPerkuliahan_id_a5bd4d88_fk_olahDataJ` FOREIGN KEY (`jurnalPerkuliahan_id`) REFERENCES `olahdatajurnalkuliah_detiljurnalkuliah` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `presensiKuliah_prese_npm_id_3626b816_fk_olahDataM` FOREIGN KEY (`npm_id`) REFERENCES `olahdatamahasiswa_mahasiswa` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 217 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 279 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of presensikuliah_presensi
 -- ----------------------------
-INSERT INTO `presensikuliah_presensi` VALUES (186, 586, 0, 12, '2020-04-05 06:52:59.304378', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (186, 586, 0, 12, '2020-04-05 06:52:59.304378', NULL, 100);
 INSERT INTO `presensikuliah_presensi` VALUES (187, 471, 0, 12, '2020-04-05 06:52:59.311383', NULL, 0);
-INSERT INTO `presensikuliah_presensi` VALUES (188, 557, 0, 12, '2020-04-05 06:52:59.316365', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (188, 557, 0, 12, '2020-04-05 06:52:59.316365', NULL, 98);
 INSERT INTO `presensikuliah_presensi` VALUES (189, 558, 0, 12, '2020-04-05 06:52:59.323376', NULL, 0);
 INSERT INTO `presensikuliah_presensi` VALUES (190, 559, 0, 12, '2020-04-05 06:52:59.328358', NULL, 0);
 INSERT INTO `presensikuliah_presensi` VALUES (191, 560, 0, 12, '2020-04-05 06:52:59.332371', NULL, 0);
@@ -1442,6 +1449,68 @@ INSERT INTO `presensikuliah_presensi` VALUES (213, 608, 0, 12, '2020-04-05 06:52
 INSERT INTO `presensikuliah_presensi` VALUES (214, 609, 0, 12, '2020-04-05 06:52:59.424456', NULL, 0);
 INSERT INTO `presensikuliah_presensi` VALUES (215, 610, 0, 12, '2020-04-05 06:52:59.428468', NULL, 0);
 INSERT INTO `presensikuliah_presensi` VALUES (216, 611, 0, 12, '2020-04-05 06:52:59.431453', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (217, 586, 0, 18, '2020-04-11 08:12:34.203263', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (218, 471, 0, 18, '2020-04-11 08:12:34.211245', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (219, 557, 0, 18, '2020-04-11 08:12:34.216129', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (220, 558, 0, 18, '2020-04-11 08:12:34.220111', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (221, 559, 0, 18, '2020-04-11 08:12:34.224084', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (222, 560, 0, 18, '2020-04-11 08:12:34.229065', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (223, 585, 0, 18, '2020-04-11 08:12:34.233078', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (224, 587, 0, 18, '2020-04-11 08:12:34.236446', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (225, 588, 0, 18, '2020-04-11 08:12:34.241428', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (226, 589, 0, 18, '2020-04-11 08:12:34.245426', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (227, 590, 0, 18, '2020-04-11 08:12:34.249302', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (228, 591, 0, 18, '2020-04-11 08:12:34.252300', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (229, 592, 0, 18, '2020-04-11 08:12:34.256446', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (230, 593, 1, 18, '2020-04-11 08:12:34.260432', NULL, 98);
+INSERT INTO `presensikuliah_presensi` VALUES (231, 594, 0, 18, '2020-04-11 08:12:34.265158', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (232, 595, 0, 18, '2020-04-11 08:12:34.268341', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (233, 596, 0, 18, '2020-04-11 08:12:34.274467', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (234, 597, 0, 18, '2020-04-11 08:12:34.278451', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (235, 598, 0, 18, '2020-04-11 08:12:34.283447', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (236, 599, 0, 18, '2020-04-11 08:12:34.286461', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (237, 600, 0, 18, '2020-04-11 08:12:34.290458', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (238, 601, 0, 18, '2020-04-11 08:12:34.294441', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (239, 603, 0, 18, '2020-04-11 08:12:34.298453', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (240, 604, 0, 18, '2020-04-11 08:12:34.301438', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (241, 605, 1, 18, '2020-04-11 08:12:34.305435', NULL, 75);
+INSERT INTO `presensikuliah_presensi` VALUES (242, 606, 0, 18, '2020-04-11 08:12:34.309435', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (243, 607, 0, 18, '2020-04-11 08:12:34.313445', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (244, 608, 0, 18, '2020-04-11 08:12:34.316428', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (245, 609, 0, 18, '2020-04-11 08:12:34.320834', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (246, 610, 0, 18, '2020-04-11 08:12:34.323832', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (247, 611, 0, 18, '2020-04-11 08:12:34.327820', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (248, 586, 0, 19, '2020-04-11 08:21:51.430717', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (249, 471, 0, 19, '2020-04-11 08:21:51.467750', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (250, 557, 0, 19, '2020-04-11 08:21:51.471745', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (251, 558, 0, 19, '2020-04-11 08:21:51.475743', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (252, 559, 0, 19, '2020-04-11 08:21:51.483842', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (253, 560, 0, 19, '2020-04-11 08:21:51.487768', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (254, 585, 0, 19, '2020-04-11 08:21:51.491744', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (255, 587, 0, 19, '2020-04-11 08:21:51.496743', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (256, 588, 0, 19, '2020-04-11 08:21:51.501739', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (257, 589, 0, 19, '2020-04-11 08:21:51.505723', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (258, 590, 0, 19, '2020-04-11 08:21:51.509721', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (259, 591, 0, 19, '2020-04-11 08:21:51.514718', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (260, 592, 0, 19, '2020-04-11 08:21:51.518757', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (261, 593, 0, 19, '2020-04-11 08:21:51.522742', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (262, 594, 0, 19, '2020-04-11 08:21:51.527739', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (263, 595, 0, 19, '2020-04-11 08:21:51.531737', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (264, 596, 0, 19, '2020-04-11 08:21:51.535735', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (265, 597, 0, 19, '2020-04-11 08:21:51.539094', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (266, 598, 0, 19, '2020-04-11 08:21:51.543110', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (267, 599, 0, 19, '2020-04-11 08:21:51.548182', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (268, 600, 0, 19, '2020-04-11 08:21:51.551103', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (269, 601, 0, 19, '2020-04-11 08:21:51.555115', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (270, 603, 0, 19, '2020-04-11 08:21:51.558102', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (271, 604, 0, 19, '2020-04-11 08:21:51.563106', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (272, 605, 0, 19, '2020-04-11 08:21:51.566113', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (273, 606, 0, 19, '2020-04-11 08:21:51.570832', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (274, 607, 0, 19, '2020-04-11 08:21:51.574817', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (275, 608, 0, 19, '2020-04-11 08:21:51.579815', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (276, 609, 0, 19, '2020-04-11 08:21:51.583810', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (277, 610, 0, 19, '2020-04-11 08:21:51.587807', NULL, 0);
+INSERT INTO `presensikuliah_presensi` VALUES (278, 611, 0, 19, '2020-04-11 08:21:51.592612', NULL, 0);
 
 -- ----------------------------
 -- Table structure for rps_fakultas
