@@ -112,7 +112,7 @@ class jurnalPerkuliahanUpdateView(UpdateView):
     template_name = 'olahDataJurnalKuliah/jurnalkuliah_form.html'
     extra_context = {
         'appGroup':'Operasional',
-        'appName':'Olah Data Jurnal Kuliah', 
+        'appName':'Rubah Data Jurnal Kuliah', 
     }
     def get_context_data(self, *args, **kwargs):
         self.kwargs.update(self.extra_context)
@@ -158,7 +158,7 @@ class jurnalKuliahDetailView(DetailView):
     template_name = 'olahDataJurnalKuliah/jurnalKuliah_detail.html'
     extra_context = {
         'appGroup':'Operasional',
-        'appName':'Olah Data Jurnal Kuliah', 
+        'appName':'Detil Data Jurnal Kuliah', 
     }
 
     def get_context_data(self, *args, **kwargs):

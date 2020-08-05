@@ -33,7 +33,7 @@ class rpsDetailView(DetailView):
     # template_name = "TEMPLATE_NAME"
     extra_context = {
         'appGroup':'Dosen',
-        'appName':'Olah Data RPS', 
+        'appName':'Detail Olah Data RPS', 
     }
 
     def get_context_data(self, *args, **kwargs):
@@ -70,7 +70,7 @@ class detilRPSCreateView(CreateView):
     template_name = 'olahDataRPS/createDetilRPS.html'
     extra_context = {
         'appGroup':'Dosen',
-        'appName':'Olah Data RPS', 
+        'appName':'Olah Data RPS - Tambah Pertemuan', 
     }
 
     def get_context_data(self,*args, **kwargs):
@@ -115,7 +115,7 @@ class referensiUpdateView(UpdateView):
     template_name = 'olahDataRPS/createreferensi.html'
     extra_context = {
         'appGroup':'Dosen',
-        'appName':'Olah Data RPS', 
+        'appName':'Olah Data RPS - Rubah Data Pustaka', 
     }
     def get_context_data(self, *args, **kwargs):
         self.kwargs.update(self.extra_context)
@@ -131,7 +131,7 @@ class detilRPSUpdateView(UpdateView):
 
     extra_context = {
         'appGroup':'Dosen',
-        'appName':'Olah Data RPS', 
+        'appName':'Olah Data RPS - Rubah Data Pertemuan', 
     }
 
     def get_context_data(self,*args, **kwargs):
@@ -239,7 +239,7 @@ def updaterps(request,update_id):
             return redirect('olahDataRPS:index')
     context = {
         'appGroup':'Dosen',
-        'appName':'Create Data RPS',
+        'appName':'Rubah Data RPS',
         'rps_form':rps_form
     }
     return render(request,'olahDataRPS/create.html',context)

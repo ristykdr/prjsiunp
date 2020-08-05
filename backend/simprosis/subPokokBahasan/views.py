@@ -165,7 +165,7 @@ class detilJurnalKuliahUpdateView(UpdateView):
     template_name = 'subPokokBahasan/createdetilJurnalKualiah.html'
     extra_context = {
         'appGroup':'Presensi',
-        'appName':'Tambah Pokok Bahasan', 
+        'appName':'Rubah Pokok Bahasan', 
     }
 
     def get_context_data(self,*args, **kwargs):

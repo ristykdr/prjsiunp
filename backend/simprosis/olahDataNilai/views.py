@@ -40,7 +40,7 @@ class jurnalKuliahDetailView(DetailView):
     template_name = 'olahDataNilai/jurnalKuliah_detail.html'
     extra_context ={
         'appGroup':'Dosen',
-        'appName':'Daftar Pokok Bahasan', 
+        'appName':'Jurnal Perkuliahan', 
     }
 
     def get_context_data(self, *args, **kwargs):
